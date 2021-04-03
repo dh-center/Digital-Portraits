@@ -41,21 +41,13 @@ class Portrait extends React.Component {
         })
     }
 
-    // нужно найти соответствие нажатому элементу через key
-    //   console.log(this.state.canvas);
-    //  this.state.canvas.palette_сolors.map(e => console.log (color = `rgb${e}`) )}
-//Может сразу в Find info делать?
-
     // paletteColors(){
     // this.state.canvas.palette_сolors.map(e => <div style ={{backgroundColor:`rgb ${e}`}}/>)}
     //создаю дивы и туда сразу цвет устанавливаю нужный,не дает доступ из-за написания palette_colors
 
-
-//   closeModal(){
-//     if(!e.target.closest('.colorLabel')){
-//     this.setState({showElement:false})
-//   }
-// } // Не понимаю пока куда навешать, чтобы работало.
+  closeModal(){
+    this.setState({showElement:false})
+  }
 
     render() {
         return (
@@ -65,11 +57,12 @@ class Portrait extends React.Component {
                 </div>
                 {this.state.showElement ?
                     <div className="colorLabel">
+                        <div className="close" onClick={() => this.closeModal()}>X</div>
                         <h2>Name <span>({this.state.canvas.Date})</span></h2>
-                        <img src={this.state.canvas.urls} alt="Painting"></img>
+                        <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"></img>
                         <p>Palette Colors</p>
                         <div className="dominantColors ">
-                            {/* {this.paletteColors} */}
+                            {this.state.canvas.palette_colors}
                         </div>
                     </div>
                     : null
@@ -90,7 +83,18 @@ class Paintercard extends React.Component {
     }
 }
 
+// clickHandler(){
+// if(e.target.contains('.square')){
+//     openModal()
+// }
+// else if(!e.target.closest('.colorLabel')){
+// closeModal()}
+// else{ null}
+// } навешать на док
+
+
 ReactDOM.render(
     <Paintercard/>,
     document.getElementById('root')
+
 );
