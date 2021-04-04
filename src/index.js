@@ -39,15 +39,33 @@ class Portrait extends React.Component {
         this.setState({
             canvas: data[id]
         })
+        // this.paletteColors(id)
     }
 
-    // paletteColors(){
-    // this.state.canvas.palette_сolors.map(e => <div style ={{backgroundColor:`rgb ${e}`}}/>)}
-    //создаю дивы и туда сразу цвет устанавливаю нужный,не дает доступ из-за написания palette_colors
+//     paletteColors(id){
+//  data[id].palette_colors.map(e => 
+//    <div style ={{backgroundColor:`rgb ${e}`}}/>)
+// }
+// map is not a function
 
   closeModal(){
     this.setState({showElement:false})
   }
+
+componentDidMount() {
+    document.addEventListener('click', this.handleClickOutside, true);
+}
+
+componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside, true);
+}
+
+handleClickOutside = event => {
+    const domNode = ReactDOM.findDOMNode(this);
+    if (!domNode || !domNode.contains(event.target)) {
+this.closeModal();
+    }
+}
 
     render() {
         return (
@@ -59,10 +77,12 @@ class Portrait extends React.Component {
                     <div className="colorLabel">
                         <div className="close" onClick={() => this.closeModal()}>X</div>
                         <h2>Name <span>({this.state.canvas.Date})</span></h2>
+                        <div className ="container">
                         <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"></img>
+                        <div className="dominantColors " >
                         <p>Palette Colors</p>
-                        <div className="dominantColors ">
                             {this.state.canvas.palette_colors}
+                        </div>
                         </div>
                     </div>
                     : null
@@ -82,16 +102,6 @@ class Paintercard extends React.Component {
         );
     }
 }
-
-// clickHandler(){
-// if(e.target.contains('.square')){
-//     openModal()
-// }
-// else if(!e.target.closest('.colorLabel')){
-// closeModal()}
-// else{ null}
-// } навешать на док
-
 
 ReactDOM.render(
     <Paintercard/>,

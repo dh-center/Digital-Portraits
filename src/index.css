@@ -66,7 +66,6 @@ h1{
 
 .wrapper{
   position: relative;
-  min-height:300px;
 }
 
 .frame{
@@ -98,7 +97,6 @@ cursor: pointer;
 
 .colorLabel{
   position:absolute;
-  min-width: 50%;
   top:10%;
   left:100%;
   background-color: rgb(212, 228, 243);
@@ -119,11 +117,14 @@ h2{
  line-height: 1rem;
  margin:10px;
 }
-
+.container{
+  display: flex;
+}
 .paintingImg{
   max-width:400px;
   max-height:400px;
   margin: 5px;
 }
-
-
+.dominantColors{
+flex-direction: row;
+}
