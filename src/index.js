@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {CSSTransition} from 'react-transition-group';
 import './index.css';
 import data from './db/yan-vermeer';
 
@@ -73,7 +74,7 @@ this.closeModal();
                 <div className="frame">
                     {this.renderSquare()}
                 </div>
-                {this.state.showElement ?
+                 <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
                     <div className="colorLabel">
                         <div className="close" onClick={() => this.closeModal()}>X</div>
                         <h2>Name <span>({this.state.canvas.Date})</span></h2>
@@ -85,8 +86,7 @@ this.closeModal();
                         </div>
                         </div>
                     </div>
-                    : null
-                }
+                    </CSSTransition>
             </div>
         );
     }
