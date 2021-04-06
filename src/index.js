@@ -35,10 +35,13 @@ class Filters extends React.Component{
 }
 
 function Square(props) {
+
+const side = Math.sqrt(250*250/data.length).toFixed(3)  
+//Нужно установить автоматическую ширину кнопок, чтобы они заполнили все пространство дива. и не выходили за его пределы. 
     return (
         <button
             className="square"
-            style={{backgroundColor: props.color}}
+            style={{height:`${side}px`,width:`${side}px`, backgroundColor: props.color}}
             onClick={props.onClick}
         />
     );
