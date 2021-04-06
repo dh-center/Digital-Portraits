@@ -21,11 +21,14 @@ class Filters extends React.Component{
     render() {
         return (
 <div id="filterCont">
-    <h2>Filter painters</h2>
-    <p>Movement</p>
-    <input type="text" placeholder="Impressionism"/>
-    <p>Century</p>
-    <input type="range" min="XVI" max ="XX" step="1"/>
+    <h2>Filter painters:</h2>
+    <p>Movement*
+    <input id="movement" type="text" placeholder="Impressionism"/>
+    </p>
+    <p>Century
+    <input id="century" type="range" min="XVI" max ="XX" step="1"/>
+    </p>
+    
 </div>
 );
 }
@@ -105,7 +108,7 @@ this.closeModal();
                         <div className="close" onClick={() => this.closeModal()}>X</div>
                         <h2 className="ptitle">Name <span>({this.state.canvas.Date})</span></h2>
                         <div className ="container">
-                        <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"></img>
+                        <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"/>
                         <div className="dominantColors " >
                         <p>Palette Colors</p>
                             {this.state.canvas.palette_colors}
@@ -129,11 +132,28 @@ class Paintercard extends React.Component {
     }
 }
 
+function Footer(){
+    return (
+        <div className="footer"> 
+        <img alt="logo"/>
+    <p id="contacts">Contact us: dh@itmo.ru</p>
+        <div id ="socialmedia">
+            <a href=""><img src="/images/insta.png" alt=" Instagram "/></a>
+            <a href =""><img src="/images/fb.png" alt="Facebook "/></a>
+            <a href=""><img src="/images/vk.png" alt="VK "/></a>
+        </div>
+        </div>
+        );
+}
+
 ReactDOM.render(
     <div>
     <MainScreen/>
     <Filters/>
+    <div className ="paintercardswr">
     <Paintercard/>
+    </div>
+    <Footer/>
     </div>,
     document.getElementById('root')
 
