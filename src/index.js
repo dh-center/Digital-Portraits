@@ -5,6 +5,32 @@ import './index.css';
 import data from './db/yan-vermeer';
 
 
+function MainScreen(){
+    return (
+        <div>  
+    <p id="projectname">Digital Portraits</p>
+        <button id="about">?</button>
+        <div id ="backimg">
+            <p>Look at your favourite painters from different perspective</p>
+        </div>
+        </div>
+        );
+}
+
+class Filters extends React.Component{
+    render() {
+        return (
+<div id="filterCont">
+    <h2>Filter painters</h2>
+    <p>Movement</p>
+    <input type="text" placeholder="Impressionism"/>
+    <p>Century</p>
+    <input type="range" min="XVI" max ="XX" step="1"/>
+</div>
+);
+}
+}
+
 function Square(props) {
     return (
         <button
@@ -77,7 +103,7 @@ this.closeModal();
                  <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
                     <div className="colorLabel">
                         <div className="close" onClick={() => this.closeModal()}>X</div>
-                        <h2>Name <span>({this.state.canvas.Date})</span></h2>
+                        <h2 className="ptitle">Name <span>({this.state.canvas.Date})</span></h2>
                         <div className ="container">
                         <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"></img>
                         <div className="dominantColors " >
@@ -96,7 +122,7 @@ class Paintercard extends React.Component {
     render() {
         return (
             <div className="card">
-                <h1>Ян Вермеер</h1>
+                <a href="https://en.wikipedia.org/wiki/Johannes_Vermeer"><h1>Johannes Vermeer</h1></a>
                 <Portrait/>
             </div>
         );
@@ -104,7 +130,11 @@ class Paintercard extends React.Component {
 }
 
 ReactDOM.render(
-    <Paintercard/>,
+    <div>
+    <MainScreen/>
+    <Filters/>
+    <Paintercard/>
+    </div>,
     document.getElementById('root')
 
 );
