@@ -57,6 +57,58 @@ button{
 html{
     font-size: 16px;
 }
+/* Add font */
+@font-face {
+  font-family: 'AryaRegular';
+  src: url('/src/font/AryaRegular.ttf') format('ttf');
+  font-style:normal;
+  font-weight: normal;
+  }
+  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rambla&family=Roboto&display=swap');
+
+/* Mainpage */
+#projectname{
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 20px;
+  font-family: "AryaRegular";
+  color:#743800;
+  margin:10px;
+}
+#about{
+  color: #fff;
+  background-color:#D89B25;
+  border: 0;
+ width:20px;
+ height:20px;
+ margin-right: 10px;
+ margin-top: 10px;
+ float: right;
+ font-size: 1rem;
+ text-align: center;
+}
+#backimg{
+  background-image: url(images/Mainback.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 450px;
+}
+#backimg p {
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+  top:50%;
+font-size: 1.5rem;
+color:#090074;
+font-family: 'Rambla', Arial;
+}
+
+/* Filters */
+
+
+/* Cardstyle */
 
 .card{
   width:20%;
@@ -125,7 +177,7 @@ cursor: pointer;
 
 
 .close{
-  width:15px;
+  width:10px;
   margin: 5px;
   float:right;
   text-align: center;
