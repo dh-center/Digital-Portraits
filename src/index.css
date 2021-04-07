@@ -60,10 +60,10 @@ html{
 /* Add font */
 @font-face {
   font-family: 'AryaRegular';
-  src: url('/src/font/AryaRegular.ttf') format('ttf');
+  src: url('/src/font/AryaRegular.ttf') format('truetype');
   font-style:normal;
   font-weight: normal;
-  } /* Doesn't work! */
+  }
   
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rambla&family=Roboto&display=swap');
 
