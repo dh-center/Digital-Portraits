@@ -4,6 +4,10 @@ import {CSSTransition} from 'react-transition-group';
 import './index.css';
 import data from './db/yan-vermeer';
 
+// social media icons
+import insta from "./images/insta.png"
+import fb from "./images/fb.png"
+import vk from "./images/vk.svg"
 
 function MainScreen(){
     return (
@@ -37,7 +41,7 @@ class Filters extends React.Component{
 function Square(props) {
 
 const side = Math.sqrt(250*250/data.length).toFixed(3)  
-//Нужно установить автоматическую ширину кнопок, чтобы они заполнили все пространство дива. и не выходили за его пределы. 
+//Нужно установить автоматическую ширину кнопок, чтобы они заполнили все пространство дива. и не выходили за его пределы. ???
     return (
         <button
             className="square"
@@ -79,7 +83,7 @@ class Portrait extends React.Component {
 //  data[id].palette_colors.map(e => 
 //    <div style ={{backgroundColor:`rgb ${e}`}}/>)
 // }
-// map is not a function
+// map is not a function как поменять, чтобы работало?
 
   closeModal(){
     this.setState({showElement:false})
@@ -138,12 +142,12 @@ class Paintercard extends React.Component {
 function Footer(){
     return (
         <div className="footer"> 
-        <img alt="logo"/>
+        <img id="logo" alt="logo"/>
     <p id="contacts">Contact us: dh@itmo.ru</p>
         <div id ="socialmedia">
-            <a href=""><img src="/images/insta.png" alt=" Instagram "/></a>
-            <a href =""><img src="/images/fb.png" alt="Facebook "/></a>
-            <a href=""><img src="/images/vk.png" alt="VK "/></a>
+            <a href="https://www.instagram.com/dh_center/"><img src={insta} alt=" Instagram "/></a>
+            <a href ="https://vk.com/dhcenter"><img src={vk} alt="Facebook "/></a>
+            <a href="https://www.facebook.com/dhcenter.itmo/"><img src={fb} alt="VK "/></a>
         </div>
         </div>
         );

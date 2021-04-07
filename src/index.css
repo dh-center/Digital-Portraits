@@ -258,14 +258,33 @@ flex-direction: row;
 /* Footer */
 
 .footer{
-  height: 60px;
+  display: grid;
+  grid-template-columns:20% 60% 20% ;
+  min-height: 60px;
   background-color:#743800;
 }
 
 #contacts{
   display: inline-block;
   color: #fff;
+  justify-self: center;
+  align-self: center;
 }
+
+#logo{
+  align-self: center;
+  margin-left:10px;
+}
+
 #socialmedia{
-  float: right;
+  display: inline-block;
+  margin-right: 10px;
+  align-self: center;
+  text-align: right;
+}
+
+#socialmedia a, img {
+width:24px;
+height:24px;
+margin-left: 15px;
 }
