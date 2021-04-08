@@ -11,13 +11,13 @@ import vk from "./images/vk.svg"
 
 function MainScreen(){
     return (
-        <div>  
+        <header>  
     <p id="projectname">Digital Portraits</p>
         <button id="about">?</button>
         <div id ="backimg">
             <p>Look at your favourite painters from different perspective</p>
         </div>
-        </div>
+        </header>
         );
 }
 
@@ -106,7 +106,7 @@ this.closeModal();
 
     render() {
         return (
-            <div className="wrapper">
+            <div>
                 <div className="frame">
                     {this.renderSquare()}
                 </div>
@@ -141,7 +141,7 @@ class Paintercard extends React.Component {
 
 function Footer(){
     return (
-        <div className="footer"> 
+        <footer> 
         <img id="logo" alt="logo"/>
     <p id="contacts">Contact us: dh@itmo.ru</p>
         <div id ="socialmedia">
@@ -149,19 +149,19 @@ function Footer(){
             <a href ="https://vk.com/dhcenter"><img src={vk} alt="Facebook "/></a>
             <a href="https://www.facebook.com/dhcenter.itmo/"><img src={fb} alt="VK "/></a>
         </div>
-        </div>
+        </footer>
         );
 }
 
 ReactDOM.render(
-    <div>
+    <body>
     <MainScreen/>
     <Filters/>
     <div className ="paintercardswr">
     <Paintercard/>
     </div>
     <Footer/>
-    </div>,
+    </body>,
     document.getElementById('root')
 
 );

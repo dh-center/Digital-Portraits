@@ -89,6 +89,7 @@ html{
  float: right;
  font-size: 1rem;
  text-align: center;
+ cursor: pointer;
 }
 #backimg{
   background-image: url(images/Mainback.png);
@@ -168,15 +169,7 @@ h1:hover{
   color:#0D54BF;
 }
 
-.wrapper{
-  position: relative;
-  width: 250px;
-height: 250px;
-}
-
 .frame{
-
-  position: absolute;
 width: 250px;
 height: 250px;
 }
@@ -202,9 +195,7 @@ cursor: pointer;
 }
 
 .colorLabel{
-  position:absolute;
-  top:10%;
-  left:100%;
+  position:relative;
   background-color: rgb(212, 228, 243);
   z-index: 3;
 }
@@ -237,13 +228,14 @@ cursor: pointer;
   cursor: pointer;
 }
 
-.ptitles{
+.ptitle{
  font-size: 1rem;
  line-height: 1rem;
  margin:10px;
 }
 .container{
   display: flex;
+
 }
 .paintingImg{
   max-width:400px;
@@ -257,11 +249,12 @@ flex-direction: row;
 
 /* Footer */
 
-.footer{
+footer{
   display: grid;
   grid-template-columns:20% 60% 20% ;
-  min-height: 60px;
+  height: 60px;
   background-color:#743800;
+  width:100%;
 }
 
 #contacts{
@@ -284,7 +277,7 @@ flex-direction: row;
 }
 
 #socialmedia a, img {
-width:24px;
-height:24px;
+max-width:24px;
+max-height:24px;
 margin-left: 15px;
 }
