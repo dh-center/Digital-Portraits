@@ -76,14 +76,16 @@ class Portrait extends React.Component {
         this.setState({
             canvas: data[id]
         })
-        // this.paletteColors(id)
+    this.paletteColors(id)
     }
 
-//     paletteColors(id){
-//  data[id].palette_colors.map(e => 
-//    <div style ={{backgroundColor:`rgb ${e}`}}/>)
-// }
-// map is not a function как поменять, чтобы работало?
+    paletteColors(id){
+        let reg =/\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/g; 
+        let palette = data[id].palette_colors.match(reg);
+    palette.map(e =>
+   <div style ={{backgroundColor:`rgb ${e}`}}/>)
+}
+
 
   closeModal(){
     this.setState({showElement:false})
@@ -118,7 +120,7 @@ this.closeModal();
                         <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"/>
                         <div className="dominantColors " >
                         <p>Palette Colors</p>
-                            {this.state.canvas.palette_colors}
+                        {/* {this.paletteColors()} */}
                         </div>
                         </div>
                     </div>
@@ -154,14 +156,14 @@ function Footer(){
 }
 
 ReactDOM.render(
-    <body>
+    <div>
     <MainScreen/>
     <Filters/>
     <div className ="paintercardswr">
     <Paintercard/>
     </div>
     <Footer/>
-    </body>,
+    </div>,
     document.getElementById('root')
 
 );
