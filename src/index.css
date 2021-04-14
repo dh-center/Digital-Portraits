@@ -60,10 +60,10 @@ html{
 /* Add font */
 @font-face {
   font-family: 'AryaRegular';
-  src: url('/src/font/AryaRegular.ttf') format('ttf');
+  src: url('/src/font/AryaRegular.ttf') format('truetype');
   font-style:normal;
   font-weight: normal;
-  } /* Doesn't work! */
+  }
   
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rambla&family=Roboto&display=swap');
 
@@ -89,6 +89,7 @@ html{
  float: right;
  font-size: 1rem;
  text-align: center;
+ cursor: pointer;
 }
 #backimg{
   background-image: url(images/Mainback.png);
@@ -105,6 +106,92 @@ font-size: 1.5rem;
 color:#090074;
 font-family: 'Rambla', Arial;
 }
+
+.popup-enter {
+  opacity: 0;
+  transform: scale(1.3);
+}
+.popup-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.popup-exit {
+  opacity: 1;
+}
+.popup-exit-active {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* .popupWrapper{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+} */
+
+.popupbody{
+  background-image: url(/src/images/Pothko.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 500px;
+height: 540px;
+}
+
+#dopinfo{
+  display: inline-block;
+  margin: 5px;
+  font-size: 1.5rem;
+  height: 15px;
+text-align: center;
+color: #743800;
+cursor:default;
+}
+
+.popupbody h2{
+  text-align: center;
+  font-family: 'Rambla';
+  font-size: 1.5rem;
+  margin-bottom: 35px;
+  color: #fff;
+}
+.popupbody p:first-of-type{
+  display: inline-block;
+  font-family: "Roboto";
+  font-size: 1.5rem !important;
+  line-height: 1.875rem;
+  font-style: italic;
+  width: 45%;
+  margin: 0 30px 20px 40px;
+}
+.popuobody img{
+  display: inline-block;
+}
+.popupbody p{
+  font-family: "Roboto";
+  font-size:0.875rem;
+  margin-right: 40px;
+  margin-left: 40px;
+  color: #fff;
+}
+
+.popupbody p:last-of-type{
+  font-family: "Roboto";
+  font-size: 0.75rem !important;
+  text-align: center;
+}
+
+
 
 /* Filters */
 #filterCont{
@@ -150,9 +237,9 @@ border-color: #D89B25;
 .card{
 justify-self: center;
 padding:20px;
-border:1px;
-border-color: #D89B25;
-} /* Border doesn't work */
+border:  1px solid #D89B25;
+margin:10px;
+} 
 
 a{
   text-decoration: none;
@@ -168,21 +255,15 @@ h1:hover{
   color:#0D54BF;
 }
 
-.wrapper{
-  position: relative;
-  width: 250px;
-height: 250px;
-}
-
 .frame{
-
-  position: absolute;
-width: 250px;
-height: 250px;
+width: 300px;
+height: 300px;
 }
 
 .square {
   background: #fff;
+  width: 40px;
+  height: 40px;
   border: 0px;
   padding: 0;
   border-radius: 0px;
@@ -202,10 +283,8 @@ cursor: pointer;
 }
 
 .colorLabel{
-  position:absolute;
-  top:10%;
-  left:100%;
-  background-color: rgb(212, 228, 243);
+  position:relative;
+  background-color:#E0CEBF;
   z-index: 3;
 }
 
@@ -237,35 +316,66 @@ cursor: pointer;
   cursor: pointer;
 }
 
-.ptitles{
+.ptitle{
  font-size: 1rem;
  line-height: 1rem;
  margin:10px;
+ font-family: "Roboto";
+ padding-top: 15px;
 }
 .container{
   display: flex;
+
 }
 .paintingImg{
   max-width:400px;
   max-height:400px;
   margin: 5px;
 }
+.colorLabel p{
+  font-size: 1rem;
+  text-align: center;
+  font-family: "Roboto";
+}
 .dominantColors{
 flex-direction: row;
+background-color: rgba(255, 255, 255, 0.7);
+margin:5px;
+padding: 5px;
 }
 
 
 /* Footer */
 
-.footer{
+footer{
+  display: grid;
+  grid-template-columns:20% 60% 20% ;
   height: 60px;
   background-color:#743800;
+  width:100%;
 }
 
 #contacts{
   display: inline-block;
   color: #fff;
+  justify-self: center;
+  align-self: center;
 }
+
+#logo{
+  align-self: center;
+  margin-left:10px;
+}
+
 #socialmedia{
-  float: right;
+  display: inline-block;
+  margin-right: 10px;
+  align-self: center;
+  text-align: right;
+}
+
+#socialmedia a, img {
+max-width:24px;
+max-height:24px;
+margin-left: 15px;
 }

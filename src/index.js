@@ -4,17 +4,64 @@ import {CSSTransition} from 'react-transition-group';
 import './index.css';
 import data from './db/yan-vermeer';
 
+// social media icons
+import insta from "./images/insta.png"
+import fb from "./images/fb.png"
+import vk from "./images/vk.svg"
 
-function MainScreen(){
+class MainScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showPopup: false,
+        }
+    }
+
+popupOpen(){this.setState({showPopup: true})}
+
+closePopup(){this.setState({showPopup:false})}
+
+
+render() {
     return (
-        <div>  
+        <header>  
     <p id="projectname">Digital Portraits</p>
-        <button id="about">?</button>
+        <button id="about" onClick={() => this.popupOpen()}>?</button>
         <div id ="backimg">
             <p>Look at your favourite painters from different perspective</p>
         </div>
-        </div>
+        <CSSTransition in={this.state.showPopup} timeout ={300} classNames="popup" unmountOnExit>
+            {/* <div className ="popupWrapper"> */}
+                    <div className="popupbody">
+                    <div className="close" onClick={() => this.closePopup()}>X</div>
+                    <div id="dopinfo" >*</div>
+                    <h2>About</h2>
+                    <p>These visualizations allow to look at chosen artists from color perspective. </p>
+                    <img alt="Digital portrait"/>
+                    <p>Each digital canvas is constructed from 
+                        squares representing dominant colors of 
+                        different paintings. They are placed in 
+                        chronological order, therefore occasionally
+                        it is possible to spot the difference between
+                        color use within painter’s life.
+                    </p>
+                    <img alt="Screenshot of the page"/>
+                    <p>The data was parsed from WikiArt website. 
+                        Later the dominant and palette colors were 
+                        identified using Phython libraries.
+                        Then the dataset was filtered to get 
+                        rid of sculptures, installations, drawings
+                         and other not relative works.
+                         </p>
+                    <p>This project was completed as a part of<br/> a
+                         DH center Seeds Grant in 2020-2021
+                         </p>
+                    </div>
+                    {/* </div> */}
+                    </CSSTransition>
+        </header>
         );
+}
 }
 
 class Filters extends React.Component{
@@ -36,12 +83,12 @@ class Filters extends React.Component{
 
 function Square(props) {
 
-const side = Math.sqrt(250*250/data.length).toFixed(3)  
-//Нужно установить автоматическую ширину кнопок, чтобы они заполнили все пространство дива. и не выходили за его пределы. 
+// const side = Math.sqrt(250*250/data.length).toFixed(3)  
+
     return (
         <button
             className="square"
-            style={{height:`${side}px`,width:`${side}px`, backgroundColor: props.color}}
+            style={{ backgroundColor: props.color}}
             onClick={props.onClick}
         />
     );
@@ -72,14 +119,16 @@ class Portrait extends React.Component {
         this.setState({
             canvas: data[id]
         })
-        // this.paletteColors(id)
+    // this.paletteColors(id)
     }
 
 //     paletteColors(id){
-//  data[id].palette_colors.map(e => 
+//         let reg =/\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/g; 
+//         let palette = data[id].palette_colors.match(reg);
+//     palette.map(e =>
 //    <div style ={{backgroundColor:`rgb ${e}`}}/>)
 // }
-// map is not a function
+
 
   closeModal(){
     this.setState({showElement:false})
@@ -102,7 +151,7 @@ this.closeModal();
 
     render() {
         return (
-            <div className="wrapper">
+            <div>
                 <div className="frame">
                     {this.renderSquare()}
                 </div>
@@ -114,7 +163,7 @@ this.closeModal();
                         <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"/>
                         <div className="dominantColors " >
                         <p>Palette Colors</p>
-                            {this.state.canvas.palette_colors}
+                        {/* {this.paletteColors()} */}
                         </div>
                         </div>
                     </div>
@@ -137,15 +186,15 @@ class Paintercard extends React.Component {
 
 function Footer(){
     return (
-        <div className="footer"> 
-        <img alt="logo"/>
+        <footer> 
+        <img id="logo" alt="logo"/>
     <p id="contacts">Contact us: dh@itmo.ru</p>
         <div id ="socialmedia">
-            <a href=""><img src="/images/insta.png" alt=" Instagram "/></a>
-            <a href =""><img src="/images/fb.png" alt="Facebook "/></a>
-            <a href=""><img src="/images/vk.png" alt="VK "/></a>
+            <a href="https://www.instagram.com/dh_center/"><img src={insta} alt=" Instagram "/></a>
+            <a href ="https://vk.com/dhcenter"><img src={vk} alt="Facebook "/></a>
+            <a href="https://www.facebook.com/dhcenter.itmo/"><img src={fb} alt="VK "/></a>
         </div>
-        </div>
+        </footer>
         );
 }
 
