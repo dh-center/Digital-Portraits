@@ -31,6 +31,7 @@ render() {
             <p>Look at your favourite painters from different perspective</p>
         </div>
         <CSSTransition in={this.state.showPopup} timeout ={300} classNames="popup" unmountOnExit>
+            {/* <div className ="popupWrapper"> */}
                     <div className="popupbody">
                     <div className="close" onClick={() => this.closePopup()}>X</div>
                     <div id="dopinfo" >*</div>
@@ -52,10 +53,11 @@ render() {
                         rid of sculptures, installations, drawings
                          and other not relative works.
                          </p>
-                    <p>This project was completed as a part of a
+                    <p>This project was completed as a part of<br/> a
                          DH center Seeds Grant in 2020-2021
                          </p>
                     </div>
+                    {/* </div> */}
                     </CSSTransition>
         </header>
         );

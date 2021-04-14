@@ -127,7 +127,6 @@ font-family: 'Rambla', Arial;
 
 /* .popupWrapper{
   position: fixed;
-  font-family: Bahnschrift, Helvetica;
   top: 0;
   right: 0;
   bottom: 0;
@@ -142,41 +141,53 @@ font-family: 'Rambla', Arial;
 } */
 
 .popupbody{
-  /* background-image: url(images/Rothko.jpg); */
-  width: 555px;
-height: 610px;
+  background-image: url(/src/images/Pothko.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 500px;
+height: 540px;
 }
 
 #dopinfo{
   display: inline-block;
   margin: 5px;
   font-size: 1.5rem;
-line-height: 28px;
+  height: 15px;
 text-align: center;
 color: #743800;
+cursor:default;
 }
+
 .popupbody h2{
   text-align: center;
   font-family: 'Rambla';
   font-size: 1.5rem;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
   color: #fff;
 }
-.popupbody p:first-child{
+.popupbody p:first-of-type{
   display: inline-block;
   font-family: "Roboto";
   font-size: 1.5rem !important;
+  line-height: 1.875rem;
   font-style: italic;
-  color: #fff;
+  width: 45%;
+  margin: 0 30px 20px 40px;
+}
+.popuobody img{
+  display: inline-block;
 }
 .popupbody p{
   font-family: "Roboto";
-  font-size:1;
+  font-size:0.875rem;
+  margin-right: 40px;
+  margin-left: 40px;
+  color: #fff;
 }
 
-.popupbody p:last-child{
+.popupbody p:last-of-type{
   font-family: "Roboto";
-  font-size: 0.875rem !important;
+  font-size: 0.75rem !important;
   text-align: center;
 }
 
