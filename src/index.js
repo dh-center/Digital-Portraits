@@ -9,32 +9,56 @@ import insta from "./images/insta.png"
 import fb from "./images/fb.png"
 import vk from "./images/vk.svg"
 
-class MainScreen extends React.Component {
+function MainScreen(props){
+    return (
+    <header>  
+    <p id="projectname">Digital Portraits</p>
+        <button id="about" onClick={props.popupOpen}>?</button>
+        <div id ="backimg">
+            <p>Look at your favourite painters from different perspective</p>
+        </div>
+        </header>)
+}
+
+class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             showPopup: false,
+            isHovered: false,
         }
     }
 
 popupOpen(){this.setState({showPopup: true})}
 
-closePopup(){this.setState({showPopup:false})}
+closePopup(){this.setState({showPopup: false})}
 
+componentDidMount() {
+    document.addEventListener('click', this.handleClickOutside, true);
+}
+
+componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside, true);
+}
+
+handleClickOutside = event => {
+    const domNode = ReactDOM.findDOMNode(this);
+    if (!domNode || !domNode.contains(event.target)) {
+this.closePopup();
+    }
+}
 
 render() {
     return (
-        <header>  
-    <p id="projectname">Digital Portraits</p>
-        <button id="about" onClick={() => this.popupOpen()}>?</button>
-        <div id ="backimg">
-            <p>Look at your favourite painters from different perspective</p>
-        </div>
         <CSSTransition in={this.state.showPopup} timeout ={300} classNames="popup" unmountOnExit>
-            {/* <div className ="popupWrapper"> */}
+            <div className ="popupWrapper">
                     <div className="popupbody">
                     <div className="close" onClick={() => this.closePopup()}>X</div>
-                    <div id="dopinfo" >*</div>
+                    <div id="dopinfo"
+                    onMouseEnter={()=>{this.setState({isHovered: true})}} 
+                    onMouseLeave={()=>{this.setState({isHovered: false})}} >*
+                    </div>
+                    <div className={`${this.state.isHovered ? null: 'hidden'}`}>Background:"M.Rothko- No.5"</div>
                     <h2>About</h2>
                     <p>These visualizations allow to look at chosen artists from color perspective. </p>
                     <img alt="Digital portrait"/>
@@ -57,9 +81,8 @@ render() {
                          DH center Seeds Grant in 2020-2021
                          </p>
                     </div>
-                    {/* </div> */}
+                    </div>
                     </CSSTransition>
-        </header>
         );
 }
 }
@@ -69,7 +92,7 @@ class Filters extends React.Component{
         return (
 <div id="filterCont">
     <h2>Filter painters:</h2>
-    <p>Movement*
+    <p>Movement
     <input id="movement" type="text" placeholder="Impressionism"/>
     </p>
     <p>Century
@@ -201,6 +224,7 @@ function Footer(){
 ReactDOM.render(
     <div>
     <MainScreen/>
+    <Popup/>
     <Filters/>
     <div className ="paintercardswr">
     <Paintercard/>
