@@ -127,7 +127,8 @@ class Portrait extends React.Component {
         };
     }
 
-
+// Попыталась в renderSquare получить данные на какого-либо художника через ключ, но не получилось
+//делала вот так data1.Titian и дальше фильтры и все такое.
     renderSquare() {
         return data
             .filter(painting => painting.dominant_colors !== "error")
@@ -191,20 +192,18 @@ this.closeModal();
 
 class Paintercard extends React.Component {
 
+    cards = Object.keys(data1).map((painter)=>
+    <div className="card"> <a href = "https://en.wikipedia.org/wiki/ `${painter}`"> <h1> {painter}</h1></a> <Portrait/></div>);
+  //как в ссылку вписать имя автора?
 
-renderPortrait(){
-   const paintersNames = Object.keys(data1);
-   console.log(paintersNames);
-    // paintersNames.map((painter)=>{<div className="card"> <a href = "https://en.wikipedia.org/wiki/ `${painter}`"><h1> {painter} </h1></a> <Portrait/></div>})
-}
+// портрету даю ключ. этот ключ потом передаю в этот же компонент в функцию renderSquare чтобы массив работ достать и дальше по написанной схеме.
+
 
     render() {
         return (
-            
-            <div className="card">
-            {/*     <a href="https://en.wikipedia.org/wiki/Johannes_Vermeer"><h1>Johannes Vermeer</h1></a>
-                <Portrait/> */}
-            </div>
+            <div className ="paintercardswr">
+                {this.cards}
+                </div>
         );
     }
 }
@@ -228,9 +227,7 @@ ReactDOM.render(
     <MainScreen/>
     <Popup/>
     <Filters/>
-    <div className ="paintercardswr">
     <Paintercard/>
-    </div>
     <Footer/>
     </div>,
     document.getElementById('root')
