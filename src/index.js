@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import './index.css';
-import data from './db/yan-vermeer';
+import data from './db/yan-vermeer.json';
+import data1 from './db/allPaintings.json';
 
 // social media icons
 import insta from "./images/insta.png"
@@ -142,15 +143,7 @@ class Portrait extends React.Component {
         this.setState({
             canvas: data[id]
         })
-    // this.paletteColors(id)
     }
-
-//     paletteColors(id){
-//         let reg =/\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/g; 
-//         let palette = data[id].palette_colors.match(reg);
-//     palette.map(e =>
-//    <div style ={{backgroundColor:`rgb ${e}`}}/>)
-// }
 
 
   closeModal(){
@@ -197,11 +190,20 @@ this.closeModal();
 }
 
 class Paintercard extends React.Component {
+
+
+renderPortrait(){
+   const paintersNames = Object.keys(data1);
+   console.log(paintersNames);
+    // paintersNames.map((painter)=>{<div className="card"> <a href = "https://en.wikipedia.org/wiki/ `${painter}`"><h1> {painter} </h1></a> <Portrait/></div>})
+}
+
     render() {
         return (
+            
             <div className="card">
-                <a href="https://en.wikipedia.org/wiki/Johannes_Vermeer"><h1>Johannes Vermeer</h1></a>
-                <Portrait/>
+            {/*     <a href="https://en.wikipedia.org/wiki/Johannes_Vermeer"><h1>Johannes Vermeer</h1></a>
+                <Portrait/> */}
             </div>
         );
     }
