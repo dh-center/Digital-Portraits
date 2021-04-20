@@ -127,17 +127,15 @@ class Portrait extends React.Component {
         };
     }
 
-// Попыталась в renderSquare получить данные на какого-либо художника через ключ, но не получилось
-//делала вот так data1.Titian и дальше фильтры и все такое.
-    renderSquare() {
-        return data
-            .filter(painting => painting.dominant_colors !== "error")
+    renderSquare(props) {
+     return JSON.parse(data1.props.p)
+            .filter(painting => painting.dominant_color !== "error")
             .map((painting, index) => <Square
                 key={index}
                 onClick={() => this.openModal(index)}
-                color={`rgb${painting.dominant_colors}`}
+                color={`rgb${painting.dominant_color}`}
             />)
-    }
+        }
 
     openModal(id) {
         this.setState({showElement: true})
@@ -175,12 +173,12 @@ this.closeModal();
                  <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
                     <div className="colorLabel">
                         <div className="close" onClick={() => this.closeModal()}>X</div>
-                        <h2 className="ptitle">Name <span>({this.state.canvas.Date})</span></h2>
+                        <h2 className="ptitle">Name <span>({this.state.canvas.year})</span></h2>
                         <div className ="container">
                         <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"/>
                         <div className="dominantColors " >
                         <p>Palette Colors</p>
-                        {/* {this.paletteColors()} */}
+                        {}
                         </div>
                         </div>
                     </div>
@@ -193,9 +191,11 @@ this.closeModal();
 class Paintercard extends React.Component {
 
     cards = Object.keys(data1).map((painter)=>
-    <div className="card"> <a href = "https://en.wikipedia.org/wiki/ `${painter}`"> <h1> {painter}</h1></a> <Portrait/></div>);
+    <div className="card"> 
+    <a href = "https://en.wikipedia.org/wiki/ `${painter}`"> <h1> {painter}</h1></a> 
+    <Portrait p = {painter} />
+    </div>);
   //как в ссылку вписать имя автора?
-
 // портрету даю ключ. этот ключ потом передаю в этот же компонент в функцию renderSquare чтобы массив работ достать и дальше по написанной схеме.
 
 
