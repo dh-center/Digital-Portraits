@@ -13,7 +13,7 @@ function MainScreen(props){
     return (
     <header>  
     <p id="projectname">Digital Portraits</p>
-        <button id="about" onClick={props.popupOpen}>?</button> //Как передать сюда функцию из Popup, когда он не родитель.
+        <button id="about" onClick={props.popupOpen}>?</button> 
         <div id ="backimg">
             <p>Look at your favourite painters from different perspective</p>
         </div>
@@ -223,7 +223,7 @@ function Footer(){
 
 ReactDOM.render(
     <div>
-    <MainScreen/>
+   <MainScreen/>
     <Popup/>
     <Filters/>
     <div className ="paintercardswr">
