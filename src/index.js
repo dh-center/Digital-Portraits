@@ -127,8 +127,8 @@ class Portrait extends React.Component {
         };
     }
 
-    renderSquare(props) {
-     return JSON.parse(data1.props.p)
+    renderSquare(key) {
+     return JSON.parse(data1.key)
             .filter(painting => painting.dominant_color !== "error")
             .map((painting, index) => <Square
                 key={index}
@@ -168,7 +168,7 @@ this.closeModal();
         return (
             <div>
                 <div className="frame">
-                    {this.renderSquare()}
+                    {this.renderSquare(props.p)}
                 </div>
                  <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
                     <div className="colorLabel">
@@ -192,7 +192,7 @@ class Paintercard extends React.Component {
 
     cards = Object.keys(data1).map((painter)=>
     <div className="card"> 
-    <a href = "https://en.wikipedia.org/wiki/ `${painter}`"> <h1> {painter}</h1></a> 
+    <a href = {`https://en.wikipedia.org/wiki/${painter}`}> <h1> {painter}</h1> </a> 
     <Portrait p = {painter} />
     </div>);
   //как в ссылку вписать имя автора?
