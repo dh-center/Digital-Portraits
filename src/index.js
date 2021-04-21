@@ -8,6 +8,7 @@ import data from './db/yan-vermeer';
 import insta from "./images/insta.png"
 import fb from "./images/fb.png"
 import vk from "./images/vk.svg"
+import { render } from '@testing-library/react';
 
 function MainScreen(props){
     return (
@@ -24,12 +25,12 @@ class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showPopup: false,
+            showPopup: props.value,
             isHovered: false,
         }
     }
 
-popupOpen(){this.setState({showPopup: true})}
+popupOpen(props){this.setState({showPopup: props.value})}
 
 closePopup(){this.setState({showPopup: false})}
 
@@ -84,6 +85,29 @@ render() {
                     </div>
                     </CSSTransition>
         );
+}
+}
+
+class MainParent extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            showPopup:false,
+        };
+    }
+
+    popupOpen = () => { 
+        this.setState({showPopup: true})
+    console.log(this.state.showPopup)}
+
+    render(){
+    return(
+        <div>
+   <MainScreen popupOpen ={this.popupOpen}/>
+    <Popup value = {this.state.showPopup}/>
+        </div>
+    )
 }
 }
 
@@ -142,15 +166,7 @@ class Portrait extends React.Component {
         this.setState({
             canvas: data[id]
         })
-    // this.paletteColors(id)
     }
-
-//     paletteColors(id){
-//         let reg =/\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/g; 
-//         let palette = data[id].palette_colors.match(reg);
-//     palette.map(e =>
-//    <div style ={{backgroundColor:`rgb ${e}`}}/>)
-// }
 
 
   closeModal(){
@@ -223,8 +239,7 @@ function Footer(){
 
 ReactDOM.render(
     <div>
-   <MainScreen/>
-    <Popup/>
+    <MainParent/>
     <Filters/>
     <div className ="paintercardswr">
     <Paintercard/>
