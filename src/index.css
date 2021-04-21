@@ -464,6 +464,7 @@ footer{
 #logo{
   align-self: center;
   margin-left:10px;
+  max-height:24px;
 }
 
 #socialmedia{
