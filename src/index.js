@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import './index.css';
-import data from './db/yan-vermeer';
+import data1 from './db/allPaintings.json';
 
 // social media icons
 import insta from "./images/insta.png"
@@ -126,32 +126,27 @@ class Portrait extends React.Component {
         };
     }
 
-
-    renderSquare() {
-        return data
-            .filter(painting => painting.dominant_colors !== "error")
+    renderSquare(e) {
+        const paintingsArray = JSON.parse(data1[e])
+     return paintingsArray
+            .filter(painting => painting.dominant_color !== "error")
             .map((painting, index) => <Square
                 key={index}
-                onClick={() => this.openModal(index)}
-                color={`rgb${painting.dominant_colors}`}
+                onClick={() => this.openModal(paintingsArray,index)}
+                color={`rgb${painting.dominant_color}`}
             />)
-    }
+        }
 
-    openModal(id) {
+    
+
+    openModal(arr,id) {
         this.setState({showElement: true})
         this.setState({
-            canvas: data[id]
+            canvas: arr[id]
         })
-    // this.paletteColors(id)
+            console.log(JSON.parse(arr[id].palette_color))
+                    
     }
-
-//     paletteColors(id){
-//         let reg =/\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/g; 
-//         let palette = data[id].palette_colors.match(reg);
-//     palette.map(e =>
-//    <div style ={{backgroundColor:`rgb ${e}`}}/>)
-// }
-
 
   closeModal(){
     this.setState({showElement:false})
@@ -176,20 +171,20 @@ this.closeModal();
         return (
             <div>
                 <div className="frame">
-                    {this.renderSquare()}
+                    {this.renderSquare(this.props.p)}
                 </div>
                  <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
-                    <div className="colorLabel">
+                    <section className="colorLabel">
                         <div className="close" onClick={() => this.closeModal()}>X</div>
-                        <h2 className="ptitle">Name <span>({this.state.canvas.Date})</span></h2>
+                        <h2 className="ptitle">{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
                         <div className ="container">
-                        <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"/>
+                        <img className="paintingImg" src={this.state.canvas.url_painting} alt="Painting"/>
                         <div className="dominantColors " >
                         <p>Palette Colors</p>
-                        {/* {this.paletteColors()} */}
+                        <div> </div>
                         </div>
                         </div>
-                    </div>
+                    </section>
                     </CSSTransition>
             </div>
         );
@@ -197,12 +192,19 @@ this.closeModal();
 }
 
 class Paintercard extends React.Component {
+
+    cards = Object.keys(data1).map((painter)=>
+    <div className="card"> 
+    <a href = {`https://en.wikipedia.org/wiki/${painter}`}> <h1> {painter}</h1> </a> 
+    <Portrait p = {painter} />
+    </div>);
+
+
     render() {
         return (
-            <div className="card">
-                <a href="https://en.wikipedia.org/wiki/Johannes_Vermeer"><h1>Johannes Vermeer</h1></a>
-                <Portrait/>
-            </div>
+            <div className ="paintercardswr">
+                {this.cards}
+                </div>
         );
     }
 }
@@ -226,9 +228,7 @@ ReactDOM.render(
     <MainScreen/>
     <Popup/>
     <Filters/>
-    <div className ="paintercardswr">
     <Paintercard/>
-    </div>
     <Footer/>
     </div>,
     document.getElementById('root')
