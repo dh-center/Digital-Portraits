@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import './index.css';
-import data from './db/yan-vermeer.json';
 import data1 from './db/allPaintings.json';
 
 // social media icons
@@ -127,23 +126,27 @@ class Portrait extends React.Component {
         };
     }
 
-    renderSquare(key) {
-     return JSON.parse(data1.key)
+    renderSquare(e) {
+        const paintingsArray = JSON.parse(data1[e])
+     return paintingsArray
             .filter(painting => painting.dominant_color !== "error")
             .map((painting, index) => <Square
                 key={index}
-                onClick={() => this.openModal(index)}
+                onClick={() => this.openModal(paintingsArray,index)}
                 color={`rgb${painting.dominant_color}`}
             />)
         }
 
-    openModal(id) {
+    
+
+    openModal(arr,id) {
         this.setState({showElement: true})
         this.setState({
-            canvas: data[id]
+            canvas: arr[id]
         })
+            console.log(JSON.parse(arr[id].palette_color))
+                    
     }
-
 
   closeModal(){
     this.setState({showElement:false})
@@ -168,20 +171,20 @@ this.closeModal();
         return (
             <div>
                 <div className="frame">
-                    {this.renderSquare(props.p)}
+                    {this.renderSquare(this.props.p)}
                 </div>
                  <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
-                    <div className="colorLabel">
+                    <section className="colorLabel">
                         <div className="close" onClick={() => this.closeModal()}>X</div>
-                        <h2 className="ptitle">Name <span>({this.state.canvas.year})</span></h2>
+                        <h2 className="ptitle">{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
                         <div className ="container">
-                        <img className="paintingImg" src={this.state.canvas.urls} alt="Painting"/>
+                        <img className="paintingImg" src={this.state.canvas.url_painting} alt="Painting"/>
                         <div className="dominantColors " >
                         <p>Palette Colors</p>
-                        {}
+                        <div> </div>
                         </div>
                         </div>
-                    </div>
+                    </section>
                     </CSSTransition>
             </div>
         );
@@ -195,8 +198,6 @@ class Paintercard extends React.Component {
     <a href = {`https://en.wikipedia.org/wiki/${painter}`}> <h1> {painter}</h1> </a> 
     <Portrait p = {painter} />
     </div>);
-  //как в ссылку вписать имя автора?
-// портрету даю ключ. этот ключ потом передаю в этот же компонент в функцию renderSquare чтобы массив работ достать и дальше по написанной схеме.
 
 
     render() {
