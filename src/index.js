@@ -29,9 +29,7 @@ class Popup extends React.Component {
             isHovered: false,
         }
     }
-
-popupOpen(props){this.setState({showPopup: props.value})}
-
+popupOpen(){this.setState({showPopup: true})}
 closePopup(){this.setState({showPopup: false})}
 
 componentDidMount() {
@@ -43,8 +41,7 @@ componentWillUnmount() {
 }
 
 handleClickOutside = event => {
-    const domNode = ReactDOM.findDOMNode(this);
-    if (!domNode || !domNode.contains(event.target)) {
+    if (!event.target.closest('.popupbody')) {
 this.closePopup();
     }
 }
@@ -59,7 +56,7 @@ render() {
                     onMouseEnter={()=>{this.setState({isHovered: true})}} 
                     onMouseLeave={()=>{this.setState({isHovered: false})}} >*
                     </div>
-                    <div className={`${this.state.isHovered ? null: 'hidden'}`}>Background:"M.Rothko- No.5"</div>
+                    <div className = {`${this.state.isHovered ? 'bginfo': 'hidden'}`}>Background:<br/>"M.Rothko- No.5"</div>
                     <h2>About</h2>
                     <p>These visualizations allow to look at chosen artists from color perspective. </p>
                     <img alt="Digital portrait"/>
@@ -92,20 +89,18 @@ class MainParent extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            showPopup:false,
-        };
+        this.popup = React.createRef();
     }
 
-    popupOpen = () => { 
-        this.setState({showPopup: true})
-    console.log(this.state.showPopup)}
+handleClick=()=>{
+this.popup.current.popupOpen();
+}
 
     render(){
     return(
         <div>
-   <MainScreen popupOpen ={this.popupOpen}/>
-    <Popup value = {this.state.showPopup}/>
+   <MainScreen popupOpen ={this.handleClick}/>
+    <Popup ref={this.popup}/>
         </div>
     )
 }
