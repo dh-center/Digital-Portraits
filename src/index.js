@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import './index.css';
-import data from './db/all_paintings1.json';
+import data1 from './db/allPaintings.json';
 
 // social media icons
 import insta from "./images/insta.png"
