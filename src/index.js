@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import './index.css';
-import data1 from './db/allPaintings.json';
+import data from './db/all_paintings1.json';
 
 // social media icons
 import insta from "./images/insta.png"
@@ -19,7 +19,7 @@ function MainScreen(props){
         <div id ="backimg">
             <p>Look at your favourite painters from different perspective</p>
         </div>
-        </header>)
+        </header>) 
 }
 
 class Popup extends React.Component {
