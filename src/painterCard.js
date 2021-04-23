@@ -22,7 +22,9 @@ function Square(props) {
             this.state = {
                 showElement: false,
                 canvas: {},
+                collorsection:[],
             };
+            this.elem = React.createRef();
         }
     
         renderSquare(e) {
@@ -41,15 +43,19 @@ function Square(props) {
             this.setState({
                 canvas: arr[id]
             }) 
-            this.renderColors(arr,id)       
+            this.renderColors(arr,id)
+            this.getWidth();       
         }
     
     renderColors(arr, id){
-     const colorsection = arr[id].palette_color
-            .map((color) => <div style={{ backgroundColor:`rgb ${color}` }}></div>)
+     this.colorsection = arr[id].palette_color
+            .map((color, index) => <div key ={index} className='palettecolor' style={{ backgroundColor:`rgb${color}` }}></div>)
+    }  
+    getWidth(){
+        // console.log(document.getElementsByClassName("container").offsetWidth);
+console.log(this.elem.current)
     }
-    // Не понятно как отправить эту переменную в render    
-    
+    // Нужно сделать функцию, которая выщитывает ширину блока container и потом передавать эту ширину в ptitle
     
       closeModal(){
         this.setState({showElement:false})
@@ -80,11 +86,11 @@ function Square(props) {
                         <section className="colorLabel">
                             <div className="close" onClick={() => this.closeModal()}>X</div>
                             <h2 className="ptitle">{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
-                            <div className ="container">
+                            <div ref={this.elem} className ="container">
                             <img className="paintingImg" src={this.state.canvas.url_painting} alt={this.state.canvas.title}/>
                             <div className="dominantColors " >
                             <p>Palette Colors</p>
-                            <div>{}</div>
+                            <div>{this.colorsection}</div>
                             </div>
                             </div>
                         </section>
