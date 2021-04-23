@@ -56,6 +56,7 @@ function Square(props) {
 console.log(this.elem.current)
     }
     // Нужно сделать функцию, которая выщитывает ширину блока container и потом передавать эту ширину в ptitle
+    //Можно использовать .offsetWidth, но как вытащить нужный блок?
     
       closeModal(){
         this.setState({showElement:false})
