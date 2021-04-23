@@ -137,7 +137,7 @@ font-family: 'Rambla', Arial;
 
 .popupbody{
 margin: 0 auto;
-margin-top: 20px;
+margin-top: 5%;
   background-image: url(/src/images/Pothko.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -146,6 +146,14 @@ height: 540px;
 }
 .hidden{
   display: none;
+}
+.bginfo{
+  display: inline-block;
+  position: relative;
+  top:5px;
+  color: #743800;
+  font-family: 'Roboto';
+  font-size: 0.75rem;
 }
 #dopinfo{
   display: inline-block;

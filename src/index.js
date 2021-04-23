@@ -8,6 +8,7 @@ import data1 from './db/all_paintings1.json';
 import insta from "./images/insta.png"
 import fb from "./images/fb.png"
 import vk from "./images/vk.svg"
+import { render } from '@testing-library/react';
 
 import logo from "./images/dh_logo.png"
 
@@ -15,7 +16,7 @@ function MainScreen(props){
     return (
     <header>  
     <p id="projectname">Digital Portraits</p>
-        <button id="about" onClick={props.popupOpen}>?</button>
+        <button id="about" onClick={props.popupOpen}>?</button> 
         <div id ="backimg">
             <p>Look at your favourite painters from different perspective</p>
         </div>
@@ -26,13 +27,11 @@ class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showPopup: false,
+            showPopup: props.value,
             isHovered: false,
         }
     }
-
 popupOpen(){this.setState({showPopup: true})}
-
 closePopup(){this.setState({showPopup: false})}
 
 componentDidMount() {
@@ -44,8 +43,7 @@ componentWillUnmount() {
 }
 
 handleClickOutside = event => {
-    const domNode = ReactDOM.findDOMNode(this);
-    if (!domNode || !domNode.contains(event.target)) {
+    if (!event.target.closest('.popupbody')) {
 this.closePopup();
     }
 }
@@ -60,7 +58,7 @@ render() {
                     onMouseEnter={()=>{this.setState({isHovered: true})}} 
                     onMouseLeave={()=>{this.setState({isHovered: false})}} >*
                     </div>
-                    <div className={`${this.state.isHovered ? null: 'hidden'}`}>Background:"M.Rothko- No.5"</div>
+                    <div className = {`${this.state.isHovered ? 'bginfo': 'hidden'}`}>Background:<br/>"M.Rothko- No.5"</div>
                     <h2>About</h2>
                     <p>These visualizations allow to look at chosen artists from color perspective. </p>
                     <img alt="Digital portrait"/>
@@ -86,6 +84,27 @@ render() {
                     </div>
                     </CSSTransition>
         );
+}
+}
+
+class MainParent extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.popup = React.createRef();
+    }
+
+handleClick=()=>{
+this.popup.current.popupOpen();
+}
+
+    render(){
+    return(
+        <div>
+   <MainScreen popupOpen ={this.handleClick}/>
+    <Popup ref={this.popup}/>
+        </div>
+    )
 }
 }
 
@@ -231,8 +250,7 @@ function Footer(){
 
 ReactDOM.render(
     <div>
-    <MainScreen/>
-    <Popup/>
+    <MainParent/>
     <Filters/>
     <Paintercard/>
     <Footer/>
