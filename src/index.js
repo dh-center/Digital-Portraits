@@ -8,7 +8,6 @@ import data1 from './db/all_paintings1.json';
 import insta from "./images/insta.png"
 import fb from "./images/fb.png"
 import vk from "./images/vk.svg"
-import { render } from '@testing-library/react';
 
 import logo from "./images/dh_logo.png"
 
