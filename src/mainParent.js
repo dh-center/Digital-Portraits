@@ -1,6 +1,6 @@
 import React from 'react';
-import Popup from './popup.js'
-import MainScreen from './mainscreen.js'
+import Popup from './Popup.js'
+import MainScreen from './MainScreen.js'
 
 class MainParent extends React.Component{
 

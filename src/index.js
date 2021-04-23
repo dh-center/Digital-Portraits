@@ -5,20 +5,25 @@ import './index.css';
 
 //Components
 
-import MainParent from './mainParent.js'
-import Filters from './filters.js'
-import Paintercard from './painterCard.js'
-import Footer from './footer.js'
+import MainParent from './MainParent.js'
+import Filters from './Filters.js'
+import Paintercard from './PainterCard.js'
+import Footer from './Footer.js'
 
 
-
-ReactDOM.render(
-    <div>
+function App(){
+    return (
+        <div>
     <MainParent/>
     <Filters/>
     <Paintercard/>
     <Footer/>
-    </div>,
+    </div>
+    )
+    }
+
+ReactDOM.render(
+    <App/>,
     document.getElementById('root')
 
 );
