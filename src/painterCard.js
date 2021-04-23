@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import data1 from './db/all_paintings1.json';
 

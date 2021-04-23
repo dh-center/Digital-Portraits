@@ -12,7 +12,6 @@ import Footer from './footer.js'
 
 
 
-
 ReactDOM.render(
     <div>
     <MainParent/>
