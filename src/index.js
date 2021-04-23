@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import './index.css';
-import data1 from './db/allPaintings.json';
+import data1 from './db/all_paintings1.json';
 
 // social media icons
 import insta from "./images/insta.png"
@@ -129,7 +129,7 @@ class Portrait extends React.Component {
     }
 
     renderSquare(e) {
-        const paintingsArray = JSON.parse(data1[e])
+        const paintingsArray = data1[e]
      return paintingsArray
             .filter(painting => painting.dominant_color !== "error")
             .map((painting, index) => <Square
@@ -139,16 +139,20 @@ class Portrait extends React.Component {
             />)
         }
 
-    
-
     openModal(arr,id) {
         this.setState({showElement: true})
         this.setState({
             canvas: arr[id]
-        })
-            console.log(JSON.parse(arr[id].palette_color))
-                    
+        }) 
+        this.renderColors(arr,id)       
     }
+
+renderColors(arr, id){
+ const colorsection = arr[id].palette_color
+        .map((color) => <div style={{ backgroundColor:`rgb ${color}` }}></div>)
+}
+// Не понятно как отправить эту переменную в render    
+
 
   closeModal(){
     this.setState({showElement:false})
@@ -180,10 +184,10 @@ this.closeModal();
                         <div className="close" onClick={() => this.closeModal()}>X</div>
                         <h2 className="ptitle">{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
                         <div className ="container">
-                        <img className="paintingImg" src={this.state.canvas.url_painting} alt="Painting"/>
+                        <img className="paintingImg" src={this.state.canvas.url_painting} alt={this.state.canvas.title}/>
                         <div className="dominantColors " >
                         <p>Palette Colors</p>
-                        <div> </div>
+                        <div>{}</div>
                         </div>
                         </div>
                     </section>
