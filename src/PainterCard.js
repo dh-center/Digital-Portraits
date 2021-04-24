@@ -24,6 +24,7 @@ function Square(props) {
                 canvas: {},
                 collorsection:[],
             };
+            this.width =""
             this.elem = React.createRef();
         }
     
@@ -43,8 +44,7 @@ function Square(props) {
             this.setState({
                 canvas: arr[id]
             }) 
-            this.renderColors(arr,id)
-            this.getWidth();       
+            this.renderColors(arr,id); 
         }
     
     renderColors(arr, id){
@@ -52,11 +52,12 @@ function Square(props) {
             .map((color, index) => <div key ={index} className='palettecolor' style={{ backgroundColor:`rgb${color}` }}></div>)
     }  
     getWidth(){
-        // console.log(document.getElementsByClassName("container").offsetWidth);
-console.log(this.elem.current)
+        this.width = this.elem.current.offsetWidth;
+
     }
+
     // Нужно сделать функцию, которая выщитывает ширину блока container и потом передавать эту ширину в ptitle
-    //Можно использовать .offsetWidth, но как вытащить нужный блок?
+// Не знаю почему он там что-то складывает и теперь наоборот появляется больше расстояния...ааааа
     
       closeModal(){
         this.setState({showElement:false})
@@ -84,9 +85,9 @@ console.log(this.elem.current)
                         {this.renderSquare(this.props.p)}
                     </div>
                      <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
-                        <section className="colorLabel">
+                        <section className="colorLabel" onLoad={()=> this.getWidth()}>
                             <div className="close" onClick={() => this.closeModal()}>X</div>
-                            <h2 className="ptitle">{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
+                            <h2 className="ptitle" style={{ width: this.width}}>{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
                             <div ref={this.elem} className ="container">
                             <img className="paintingImg" src={this.state.canvas.url_painting} alt={this.state.canvas.title}/>
                             <div className="dominantColors " >
