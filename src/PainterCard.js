@@ -118,7 +118,6 @@ this.psorted=[];
         }
         )
         const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
-        console.log(paintAndYear)
 this.psorted = Object.keys(paintAndYear).sort(function(a,b){return paintAndYear[a]- paintAndYear[b]})
     }
     
