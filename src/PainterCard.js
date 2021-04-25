@@ -103,18 +103,38 @@ function Square(props) {
     }
     
     class Paintercard extends React.Component {
+constructor(props) {
+            super(props);
+this.psorted=[];
+}
+        sorting () {
+        const keys = Object.keys(data1)
+        const years = Object.values(data1).map((array)=> array[0].year)
+        const values = years.map((e)=> 
+        {if (typeof e === 'string') { 
+        e = parseInt(e.substr(0,4))
+        return e
+    }else{return e}
+        }
+        )
+        const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
+        console.log(paintAndYear)
+this.psorted = Object.keys(paintAndYear).sort(function(a,b){return paintAndYear[a]- paintAndYear[b]})
+    }
     
-        cards = Object.keys(data1).map((painter)=>
+     rendercards() {
+         this.sorting()
+        return this.psorted.map((painter)=>
         <div className="card"> 
         <a href = {`https://en.wikipedia.org/wiki/${painter}`}> <h1> {painter}</h1> </a> 
         <Portrait p = {painter} />
-        </div>);
+        </div>);}
     
     
         render() {
             return (
                 <div className ="paintercardswr">
-                    {this.cards}
+                    {this.rendercards()}
                     </div>
             );
         }
