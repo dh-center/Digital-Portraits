@@ -22,7 +22,10 @@ function Square(props) {
             this.state = {
                 showElement: false,
                 canvas: {},
+                collorsection:[],
             };
+            this.width =""
+            this.elem = React.createRef();
         }
     
         renderSquare(e) {
@@ -41,15 +44,20 @@ function Square(props) {
             this.setState({
                 canvas: arr[id]
             }) 
-            this.renderColors(arr,id)       
+            this.renderColors(arr,id); 
         }
     
     renderColors(arr, id){
-     const colorsection = arr[id].palette_color
-            .map((color) => <div style={{ backgroundColor:`rgb ${color}` }}></div>)
+     this.colorsection = arr[id].palette_color
+            .map((color, index) => <div key ={index} className='palettecolor' style={{ backgroundColor:`rgb${color}` }}></div>)
+    }  
+    getWidth(){
+        this.width = this.elem.current.offsetWidth;
+
     }
-    // Не понятно как отправить эту переменную в render    
-    
+
+    // Нужно сделать функцию, которая выщитывает ширину блока container и потом передавать эту ширину в ptitle
+// Не знаю почему он там что-то складывает и теперь наоборот появляется больше расстояния...ааааа
     
       closeModal(){
         this.setState({showElement:false})
@@ -77,14 +85,14 @@ function Square(props) {
                         {this.renderSquare(this.props.p)}
                     </div>
                      <CSSTransition in={this.state.showElement} timeout ={300} classNames="lableTr" unmountOnExit>
-                        <section className="colorLabel">
+                        <section className="colorLabel" onLoad={()=> this.getWidth()}>
                             <div className="close" onClick={() => this.closeModal()}>X</div>
-                            <h2 className="ptitle">{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
-                            <div className ="container">
+                            <h2 className="ptitle" style={{ width: this.width}}>{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
+                            <div ref={this.elem} className ="container">
                             <img className="paintingImg" src={this.state.canvas.url_painting} alt={this.state.canvas.title}/>
                             <div className="dominantColors " >
                             <p>Palette Colors</p>
-                            <div>{}</div>
+                            <div>{this.colorsection}</div>
                             </div>
                             </div>
                         </section>
@@ -95,18 +103,37 @@ function Square(props) {
     }
     
     class Paintercard extends React.Component {
+constructor(props) {
+            super(props);
+this.psorted=[];
+}
+        sorting () {
+        const keys = Object.keys(data1)
+        const years = Object.values(data1).map((array)=> array[0].year)
+        const values = years.map((e)=> 
+        {if (typeof e === 'string') { 
+        e = parseInt(e.substr(0,4))
+        return e
+    }else{return e}
+        }
+        )
+        const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
+this.psorted = Object.keys(paintAndYear).sort(function(a,b){return paintAndYear[a]- paintAndYear[b]})
+    }
     
-        cards = Object.keys(data1).map((painter)=>
+     rendercards() {
+         this.sorting()
+        return this.psorted.map((painter)=>
         <div className="card"> 
         <a href = {`https://en.wikipedia.org/wiki/${painter}`}> <h1> {painter}</h1> </a> 
         <Portrait p = {painter} />
-        </div>);
+        </div>);}
     
     
         render() {
             return (
                 <div className ="paintercardswr">
-                    {this.cards}
+                    {this.rendercards()}
                     </div>
             );
         }
