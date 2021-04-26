@@ -96,7 +96,7 @@ class Portrait extends React.Component {
     }
 }
 
-class Paintercard extends React.Component {
+class AllPaintercards extends React.Component {
     constructor(props) {
         super(props);
         this.psorted = [];
@@ -134,4 +134,4 @@ class Paintercard extends React.Component {
     }
 }
 
-export default Paintercard
+export default AllPaintercards

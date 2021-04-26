@@ -2,7 +2,7 @@ import React from 'react';
 import Popup from './Popup.js'
 import MainScreen from './MainScreen.js'
 
-class MainParent extends React.Component{
+class MainPage extends React.Component{
 
     constructor(props) {
         super(props);
@@ -23,4 +23,4 @@ this.popup.current.popupOpen();
 }
 }
 
-export default MainParent
+export default MainPage
