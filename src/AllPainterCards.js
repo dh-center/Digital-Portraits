@@ -75,19 +75,17 @@ class Portrait extends React.Component {
     render() {
         return (
             <div>
-                <div className="frame">
+                <div className="portrait">
                     {this.renderSquare(this.props.p)}
                 </div>
                 <CSSTransition in={this.state.showElement} timeout={300} classNames="lableTr" unmountOnExit>
                     <section className="colorLabel">
                         <div className="close" onClick={() => this.closeModal()}>X</div>
-                        <h2 className="ptitle" >{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
-                        <div ref={this.elem} className="container">
-                            <img className="paintingImg" src={this.state.canvas.url_painting} alt={this.state.canvas.title} />
-                            <div className="dominantColors " >
-                                <p>Palette Colors</p>
-                                <div>{this.colorsection}</div>
-                            </div>
+                        <h2 className="paintingTitle" >{this.state.canvas.title} <span>({this.state.canvas.year})</span></h2>
+                        <img className="paintingImg" src={this.state.canvas.url_painting} alt={this.state.canvas.title} />
+                        <div className="dominantColors " >
+                            <p>Palette Colors</p>
+                            <div>{this.colorsection}</div>
                         </div>
                     </section>
                 </CSSTransition>
@@ -100,6 +98,7 @@ class AllPaintercards extends React.Component {
     constructor(props) {
         super(props);
         this.psorted = [];
+        this.sorting()
     }
     sorting() {
         const keys = Object.keys(data1)
@@ -116,7 +115,6 @@ class AllPaintercards extends React.Component {
     }
 
     rendercards() {
-        this.sorting()
         return this.psorted.map((painter) =>
             <div className="card">
                 <a href={`https://en.wikipedia.org/wiki/${painter}`}> <h1> {painter}</h1> </a>

@@ -1,0 +1,181 @@
+/* Delete browsers settings */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+button{
+  outline: none;
+}
+
+
+
+
+html{
+    font-size: 16px;
+}
+/* Add font */
+@font-face {
+  font-family: 'AryaRegular';
+  src: url('/src/font/AryaRegular.ttf') format('truetype');
+  font-style:normal;
+  font-weight: normal;
+  }
+  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rambla&family=Roboto&display=swap');
+
+
+.popup-enter {
+    opacity: 0;
+  }
+  .popup-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+  .popup-exit {
+    opacity: 1;
+  }
+  .popup-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+  
+  .popupWrapper{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgb(255,255,255, 0.7);
+    z-index: 5;
+  }
+  
+  .popupbody{
+  margin: 0 auto;
+  margin-top: 5%;
+    background-image: url(/src/images/Pothko.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 490px;
+  height: 540px;
+  }
+  .hidden{
+    display: none;
+  }
+  .bginfo{
+    display: inline-block;
+    position: relative;
+    top:5px;
+    color: #743800;
+    font-family: 'Roboto';
+    font-size: 0.75rem;
+  }
+  #dopinfo{
+    display: inline-block;
+    margin: 5px;
+    font-family: 'Roboto';
+    font-size: 1.5rem;
+    height: 15px;
+  text-align: center;
+  color: #743800;
+  cursor:default;
+  }
+  
+  .popupbody .close{
+    color: #743800;
+    font-family: 'Roboto';
+  }
+  
+  .popupbody h2{
+    text-align: center;
+    font-family: 'Rambla';
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+    position:relative;
+    bottom:15px;
+  }
+  .popupbody p:first-of-type{
+    display: inline-block;
+    font-family: "Roboto";
+    font-size: 1.5rem !important;
+    line-height: 1.875rem;
+    font-style: italic;
+    width: 45%;
+    margin: 0 30px 20px 40px;
+  }
+  .popupbody p:nth-of-type(2){
+  margin-bottom: 80px;
+  }
+  .popuobody img{
+    display: inline-block;
+  }
+  .popupbody p:nth-of-type(3){
+    width:45%;
+    float: right;
+    margin-bottom: 25px;
+    }
+  .popupbody p{
+    display: inline-block;
+    font-family: "Roboto";
+    font-size:0.875rem;
+    line-height: 1.125rem;
+    margin-right: 40px;
+    margin-left: 40px;
+    color: #fff;
+  }
+  
+  .popupbody p:last-of-type{
+    font-family: "Roboto";
+    font-size: 0.75rem !important;
+    line-height: 0.875rem;
+    text-align: center;
+    width:100%;
+    margin:0;
+    margin-bottom: 10px;
+  }
