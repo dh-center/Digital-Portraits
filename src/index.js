@@ -1,29 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
 
 
 //Components
 
-import MainParent from './MainParent.js'
+import MainPage from './MainPage.js'
 import Filters from './Filters.js'
-import Paintercard from './PainterCard.js'
+import AllPainterCards from './AllPainterCards.js'
 import Footer from './Footer.js'
 
 
-function App(){
+function App() {
     return (
         <div>
-    <MainParent/>
-    <Filters/>
-    <Paintercard/>
-    <Footer/>
-    </div>
+            <MainPage />
+            <Filters />
+            <AllPainterCards />
+            <Footer />
+        </div>
     )
-    }
+}
 
 ReactDOM.render(
-    <App/>,
+    <App />,
     document.getElementById('root')
 
 );
