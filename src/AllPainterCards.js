@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import data1 from './db/all_paintings1.json';
+import './allpaintercards.css';
 
 function Square(props) {
 
@@ -117,7 +118,7 @@ class AllPaintercards extends React.Component {
     rendercards() {
         return this.psorted.map((painter) =>
             <div className="card">
-                <a href={`https://en.wikipedia.org/wiki/${painter}`}> <h1> {painter}</h1> </a>
+                <a href={`https://en.wikipedia.org/wiki/${painter}`}> <h1 className="artistname"> {painter}</h1> </a>
                 <Portrait p={painter} />
             </div>);
     }

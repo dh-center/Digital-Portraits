@@ -1,4 +1,5 @@
 import React from 'react';
+import './mainscreen.css';
 
 function MainScreen(props) {
     return (

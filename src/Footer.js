@@ -1,5 +1,5 @@
 import React from 'react';
-// import './footer.css';
+import './footer.css';
 
 // social media icons
 import insta from "./images/insta.png"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
-// import './popup.css';
+import './popup.css';
 
 class Popup extends React.Component {
     constructor(props) {
