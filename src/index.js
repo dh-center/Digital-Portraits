@@ -5,18 +5,16 @@ import ReactDOM from 'react-dom';
 
 //Components
 
-import MainPage from './MainPage.js'
-import Filters from './Filters.js'
-import AllPainterCards from './AllPainterCards.js'
+import Header from './Header.js'
+import Body from './Body.js'
 import Footer from './Footer.js'
 
 
 function App() {
     return (
         <div>
-            <MainPage />
-            <Filters />
-            <AllPainterCards />
+            <Header />
+            <Body/>
             <Footer />
         </div>
     )

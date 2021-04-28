@@ -98,6 +98,7 @@ class Portrait extends React.Component {
 class AllPaintercards extends React.Component {
     constructor(props) {
         super(props);
+        this.paintAndYear = {};
         this.psorted = [];
         this.sorting()
     }
@@ -113,6 +114,14 @@ class AllPaintercards extends React.Component {
         )
         const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
         this.psorted = Object.keys(paintAndYear).sort(function (a, b) { return paintAndYear[a] - paintAndYear[b] })
+
+        Object.keys(paintAndYear).map(key => paintAndYear[key] = Math.trunc(paintAndYear[key] / 100 + 1))
+        this.paintAndYear = paintAndYear;
+    }
+
+    filtering(value) {
+        const filtered = Object.keys(this.paintAndYear).filter(key => this.paintAndYear[key] === value)
+        this.rendercards(filtered) //How to overwrite the current value, even if it is not hardcoded?
     }
 
     rendercards() {
