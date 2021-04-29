@@ -6,15 +6,15 @@ import ReactDOM from 'react-dom';
 //Components
 
 import Header from './Header.js'
-import Body from './Body.js'
 import Footer from './Footer.js'
+import MainContent from './MainContent.js';
 
 
 function App() {
     return (
         <div>
             <Header />
-            <Body/>
+            <MainContent/>
             <Footer />
         </div>
     )

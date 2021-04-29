@@ -4,7 +4,7 @@ import './filters.css';
 function Filters(props) {
 
     const [centValue, setcentValue] = useState(15)
-    const [romcentValue, setromcentValue] = useState("")
+    const [romCentValue, setromcentValue] = useState("")
     const [pers, setpersValue] = useState(0)
 
     const romanCentury = { 15: 'XV', 16: 'XVI', 17: 'XVII', 18: 'XVIII', 19: 'XIX', 20: 'XX' }
@@ -20,7 +20,7 @@ function Filters(props) {
     };
 
     const handleClick = () => {
-        props.rendercards();
+        props.resetcards();
     }
 
     return (
@@ -31,7 +31,7 @@ function Filters(props) {
             </p>
             <p>Century
                 <span className="century_container">
-                        <span className="century_label" style={{ left: pers + '%' }}>{romcentValue}</span>
+                        <span className="century_label" style={{ left: pers + '%' }}>{romCentValue}</span>
                     <input id="century" type="range" min={15} max={20} value={centValue} step="1"
                         onChange={(e) => handleChange(e)}
                     />
