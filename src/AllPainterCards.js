@@ -93,8 +93,8 @@ class Portrait extends React.Component {
 }
 
 function AllPaintercards(props) {
-    
-  const rendercards = () => {
+
+    const rendercards = () => {
         return props.state.map((painter) =>
             <div className="card">
                 <a href={`https://en.wikipedia.org/wiki/${painter}`}> <h1 className="artistname"> {painter}</h1> </a>
@@ -102,12 +102,12 @@ function AllPaintercards(props) {
             </div>);
     }
 
-        return (
-            <div className="paintercardswr">
-                {rendercards()}
-            </div>
-        );
-    }
+    return (
+        <div className="paintercardswr">
+            {rendercards()}
+        </div>
+    );
+}
 
 
 export default AllPaintercards

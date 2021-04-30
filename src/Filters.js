@@ -31,7 +31,7 @@ function Filters(props) {
             </p>
             <p>Century
                 <span className="century_container">
-                        <span className="century_label" style={{ left: pers + '%' }}>{romCentValue}</span>
+                    <span className="century_label" style={{ left: pers + '%' }}>{romCentValue}</span>
                     <input id="century" type="range" min={15} max={20} value={centValue} step="1"
                         onChange={(e) => handleChange(e)}
                     />
