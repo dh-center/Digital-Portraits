@@ -69,7 +69,7 @@ html{
 
 
 footer{
-    display: grid;
+    display: grid !important;
     grid-template-columns:20% 60% 20% ;
     height: 60px;
     background-color:#743800;

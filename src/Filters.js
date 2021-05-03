@@ -21,6 +21,8 @@ function Filters(props) {
 
     const handleClick = () => {
         props.resetcards();
+        setcentValue(15);
+        setromcentValue("");
     }
 
     return (
