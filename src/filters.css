@@ -69,18 +69,18 @@ html{
 
 
 /* Filters */
-#filterCont{
+.filterCont{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 35px;
     margin-bottom: 50px;
   }
-  #filterCont h2{
+  .filterCont h2{
     font-size: 1rem;
     font-family: "Roboto";
     margin-bottom: 30px;
   }
-  #filterCont p{
+  .filterCont p{
     display: inline-block;
     font-family: "Roboto";
     font-size: 1.25rem;

@@ -12,7 +12,7 @@ import MainContent from './MainContent.js';
 
 function App() {
     return (
-        <div>
+        <div className='body'>
             <Header />
             <MainContent/>
             <Footer />

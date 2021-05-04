@@ -23,13 +23,13 @@ class MainContent extends React.Component {
         )
         const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
         this.psorted = Object.keys(paintAndYear).sort(function (a, b) { return paintAndYear[a] - paintAndYear[b] })
-        this.state.paintersArray = this.psorted //вот тут проблема. не будет, через setState выводить ничего.
+        this.state.paintersArray = this.psorted 
 
         Object.keys(paintAndYear).map(key => paintAndYear[key] = Math.trunc(paintAndYear[key] / 100 + 1))
         this.paintAndYear = paintAndYear;
     }
 
-    filtering(value) {
+    filterData(value) {
         const filtered = Object.keys(this.paintAndYear).filter(key => this.paintAndYear[key] === value)
         this.setState({ paintersArray: filtered })
     }
@@ -37,7 +37,7 @@ class MainContent extends React.Component {
 
 
     handleSlide = (value) => {
-        this.filtering(value);
+        this.filterData(value);
     }
     handleClick = () => {
         this.setState({ paintersArray: this.psorted });
@@ -46,7 +46,7 @@ class MainContent extends React.Component {
     render() {
         return (
             <div>
-                <Filters filtering={this.handleSlide} resetcards={this.handleClick} />
+                <Filters filterData={this.handleSlide} resetcards={this.handleClick} />
                 <AllPaintercards state={this.state.paintersArray} />
             </div>
         )
