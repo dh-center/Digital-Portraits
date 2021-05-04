@@ -5,18 +5,16 @@ import './stylesReset.css';
 
 //Components
 
-import MainPage from './MainPage.js'
-import Filters from './Filters.js'
-import AllPainterCards from './AllPainterCards.js'
+import Header from './Header.js'
 import Footer from './Footer.js'
+import MainContent from './MainContent.js';
 
 
 function App() {
     return (
-        <div>
-            <MainPage />
-            <Filters />
-            <AllPainterCards />
+        <div className='body'>
+            <Header />
+            <MainContent/>
             <Footer />
         </div>
     )

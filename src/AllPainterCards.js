@@ -51,9 +51,6 @@ class Portrait extends React.Component {
             .map((color, index) => <div key={index} className='palettecolor' style={{ backgroundColor: `rgb${color}` }}></div>)
     }
 
-    // Нужно сделать функцию, которая выщитывает ширину блока container и потом передавать эту ширину в ptitle
-    // Не знаю почему он там что-то складывает и теперь наоборот появляется больше расстояния...ааааа
-
     closeModal() {
         this.setState({ showElement: false })
     }
@@ -95,42 +92,22 @@ class Portrait extends React.Component {
     }
 }
 
-class AllPaintercards extends React.Component {
-    constructor(props) {
-        super(props);
-        this.psorted = [];
-        this.sorting()
-    }
-    sorting() {
-        const keys = Object.keys(data1)
-        const years = Object.values(data1).map((array) => array[0].year)
-        const values = years.map((e) => {
-            if (typeof e === 'string') {
-                e = parseInt(e.substr(0, 4))
-                return e
-            } else { return e }
-        }
-        )
-        const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
-        this.psorted = Object.keys(paintAndYear).sort(function (a, b) { return paintAndYear[a] - paintAndYear[b] })
-    }
+function AllPaintercards(props) {
 
-    rendercards() {
-        return this.psorted.map((painter) =>
+    const rendercards = () => {
+        return props.state.map((painter) =>
             <div className="card">
                 <a href={`https://en.wikipedia.org/wiki/${painter}`}> <h1 className="artistname"> {painter}</h1> </a>
                 <Portrait p={painter} />
             </div>);
     }
 
-
-    render() {
-        return (
-            <div className="paintercardswr">
-                {this.rendercards()}
-            </div>
-        );
-    }
+    return (
+        <div className="paintercardswr">
+            {rendercards()}
+        </div>
+    );
 }
+
 
 export default AllPaintercards

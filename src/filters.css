@@ -37,18 +37,18 @@ html{
 
 
 /* Filters */
-#filterCont{
+.filterCont{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 35px;
     margin-bottom: 50px;
   }
-  #filterCont h2{
+  .filterCont h2{
     font-size: 1rem;
     font-family: "Roboto";
     margin-bottom: 30px;
   }
-  #filterCont p{
+  .filterCont p{
     display: inline-block;
     font-family: "Roboto";
     font-size: 1.25rem;
@@ -77,6 +77,40 @@ html{
     margin-left: 10px;
   }
   
+  .century_container{
+    position:relative;
+  }
+  .century_label{
+    position:absolute;
+    bottom:25px;
+    left:5px;
+    padding:5px;
+    font-family: "Roboto";
+    font-size: 1rem;
+    color:#000000;
+  }
+
+
+
+  input[type=range]::before{
+    content:"XV";
+    color:#E0CEBF;
+    font-size: 0.875rem;
+    font-family: "Roboto";
+    position: absolute;
+    top:95%;
+  }
+
+  input[type=range]::after{
+    content:"XX";
+    color:#E0CEBF;
+    font-size: 0.875rem;
+    font-family: "Roboto";
+    position: absolute;
+    top:95%;
+    right:0%;
+  }
+
   input[type=range]:focus {
     outline: none;
   }
@@ -143,4 +177,19 @@ html{
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -8px;
+  }
+
+  .reset_filter{
+    font-family: "Roboto";
+    font-size: 1rem;
+    margin-left:10px;
+    background-color: #fff;
+    border-color: #D89B25;
+    border-width: 1px;
+    border-radius: 0px;
+    padding:2px 5px;
+    border-style: solid;
+  }
+  .reset_filter:hover{
+color:#D89B25;
   }
