@@ -79,3 +79,5 @@ class Portrait extends React.Component {
         );
     }
 }
+
+export default Portrait
