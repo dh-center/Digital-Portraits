@@ -3,13 +3,13 @@ import './mainscreen.css';
 
 function MainScreen(props) {
     return (
-        <header>
+        <section>
             <p id="projectname">Digital Portraits</p>
             <button id="about" onClick={props.popupOpen}>?</button>
             <div id="backimg">
                 <p>Look at your favourite painters from different perspective</p>
             </div>
-        </header>)
+        </section>)
 }
 
 export default MainScreen
