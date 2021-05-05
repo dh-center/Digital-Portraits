@@ -2,6 +2,7 @@ import React from 'react';
 import AllPaintercards from './AllPainterCards.js'
 import Filters from './Filters.js'
 import data1 from './db/all_paintings1.json'
+import movements from './db/movements.json'
 
 class MainContent extends React.Component {
 
@@ -23,7 +24,7 @@ class MainContent extends React.Component {
         )
         const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
         this.psorted = Object.keys(paintAndYear).sort(function (a, b) { return paintAndYear[a] - paintAndYear[b] })
-        this.state.paintersArray = this.psorted 
+        this.state.paintersArray = this.psorted
 
         Object.keys(paintAndYear).map(key => paintAndYear[key] = Math.trunc(paintAndYear[key] / 100 + 1))
         this.paintAndYear = paintAndYear;
@@ -34,7 +35,10 @@ class MainContent extends React.Component {
         this.setState({ paintersArray: filtered })
     }
 
-
+    filterMovement(movement) {
+        const filteredMovements = Object.keys(movements).filter(key => movements[key].includes(movement))
+        this.setState({ paintersArray: filteredMovements })
+    }
 
     handleSlide = (value) => {
         this.filterData(value);
@@ -42,11 +46,14 @@ class MainContent extends React.Component {
     handleClick = () => {
         this.setState({ paintersArray: this.psorted });
     }
+    handleChange = (movement) => {
+        this.filterMovement(movement)
+    }
 
     render() {
         return (
             <div>
-                <Filters filterData={this.handleSlide} resetcards={this.handleClick} />
+                <Filters filterData={this.handleSlide} resetcards={this.handleClick} filterMovement={this.handleChange} />
                 <AllPaintercards state={this.state.paintersArray} />
             </div>
         )

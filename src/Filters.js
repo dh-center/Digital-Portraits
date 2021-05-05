@@ -10,22 +10,27 @@ function Filters(props) {
     const [movement, setMovementValue] = useState("")
 
     const handleMovementChange = (e) => {
+        setcentValue(15);
+        setromcentValue("")
         setMovementValue(e.target.value)
         if (e.target.value === ""){
             props.resetcards();
-        }
+        } else{
+        props.filterMovement(e.target.value)}
     }
 
     const handleChange = (e) => {
         setcentValue(e.target.value);
         props.filterData(parseInt(e.target.value));
         setromcentValue(romanCentury[e.target.value]);
+        setMovementValue("")
     };
 
     const handleClick = () => {
         props.resetcards();
         setcentValue(15);
         setromcentValue("");
+        setMovementValue("");
     }
 
     return (
