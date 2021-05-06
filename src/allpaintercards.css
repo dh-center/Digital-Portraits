@@ -1,29 +1,4 @@
 
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-button{
-  outline: none;
-}
-
-
-
-
 html,body{
     font-size: 16px;
     width:100%;
@@ -38,7 +13,6 @@ html,body{
   }
   
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rambla&family=Roboto&display=swap');
-
 
 
 
@@ -75,13 +49,12 @@ html,body{
   
   .portrait{
   width: 250px;
-  height: 250px;
+  height: auto;
   }
   
   .square {
-    background: #fff;
-    width: 15px;
-    height: 15px;
+    min-width: 15px;
+    min-height: 15px;
     border: 0px;
     padding: 0;
     border-radius: 0px;
