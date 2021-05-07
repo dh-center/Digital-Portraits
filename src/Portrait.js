@@ -59,9 +59,12 @@ class Portrait extends React.Component {
     }
 
     render() {
+        const paintingsCount = data1[this.props.p].length;
+        const size = Math.ceil(Math.sqrt(paintingsCount))
+
         return (
-            <div>
-                <div className="portrait">
+            <>
+                <div className="portrait" style={{width: '100px', gridTemplateColumns: `repeat(${size}, 1fr)`}}>
                     {this.renderSquare(this.props.p)}
                 </div>
                 <CSSTransition in={this.state.showElement} timeout={300} classNames="lableTr" unmountOnExit>
@@ -75,7 +78,7 @@ class Portrait extends React.Component {
                         </div>
                     </section>
                 </CSSTransition>
-            </div>
+            </>
         );
     }
 }
