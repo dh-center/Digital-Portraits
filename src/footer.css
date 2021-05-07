@@ -56,8 +56,8 @@ html{
   #logo{
     align-self: center;
     margin-left:10px;
-    max-width: 130px;
-    max-height: 65px;
+    width: 130px;
+    height: 65px;
   }
   
   #socialmedia{
@@ -68,8 +68,8 @@ html{
   }
   
   #socialmedia a, img {
-  max-width:24px;
-  max-height:24px;
+  width:24px;
+  height:24px;
   margin-left: 15px;
   }
   
