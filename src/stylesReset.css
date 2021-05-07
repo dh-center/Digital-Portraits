@@ -27,3 +27,8 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
+
+.body{
+    height: 100%;
+    width: 100%;
+}

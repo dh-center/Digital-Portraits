@@ -1,6 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import './popup.css';
+import dportrait from "./images/DigitalPortrait.png"
 
 class Popup extends React.Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class Popup extends React.Component {
                         <div className={`${this.state.isHovered ? 'bginfo' : 'hidden'}`}>Background:<br />"M.Rothko- No.5"</div>
                         <h2>About</h2>
                         <p>These visualizations allow to look at chosen artists from color perspective. </p>
-                        <img alt="Digital portrait" />
+                        <img className="popupimg" src={dportrait} alt="Digital portrait" />
                         <p>Each digital canvas is constructed from
                         squares representing dominant colors of
                         different paintings. They are placed in
@@ -48,7 +49,7 @@ class Popup extends React.Component {
                         it is possible to spot the difference between
                         color use within painter’s life.
                     </p>
-                        <img alt="Screenshot of the page" />
+                        <img  className="popupimg" alt="Screenshot of the page" />
                         <p>The data was parsed from WikiArt website.
                         Later the dominant and palette colors were
                         identified using Phython libraries.
