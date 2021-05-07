@@ -40,7 +40,7 @@ class Popup extends React.Component {
                         <div className={`${this.state.isHovered ? 'bginfo' : 'hidden'}`}>Background:<br />"M.Rothko- No.5"</div>
                         <h2>About</h2>
                         <p>These visualizations allow to look at chosen artists from color perspective. </p>
-                        <img alt="Digital portrait" />
+                        <img src="./images/DigitalPortrait.png" alt="Digital portrait" />
                         <p>Each digital canvas is constructed from
                         squares representing dominant colors of
                         different paintings. They are placed in
