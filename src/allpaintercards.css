@@ -196,3 +196,19 @@ html,body{
     height: 50px;
     margin: 10px;
   }
+
+  @media screen and (max-width: 576px) {
+
+    .colorLabel {
+      display: block;
+      width:90%;
+    }
+    .dominantColors{
+      width: auto;
+    }
+    .paintingImg{
+      display: block;
+      width:95%;
+      margin: 0 auto;
+    }
+  }
