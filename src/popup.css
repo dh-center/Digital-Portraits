@@ -72,8 +72,8 @@ html{
     background-image: url(/src/images/Pothko.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 490px;
-  height: 540px;
+    max-width: 490px;
+  max-height: 540px;
   }
   .hidden{
     display: none;
@@ -151,4 +151,20 @@ html{
     width:100%;
     margin:0;
     margin-bottom: 10px;
+  }
+
+
+  @media screen and (max-width: 576px) {
+      
+    .popupimg{
+      display:none;
+    }
+    .popupbody p:first-of-type {
+      font-size: 1rem !important;
+      width: 80%;
+    }
+    .popupbody p:nth-of-type(3) {
+      width: 80%;
+      float: none;
+    }
   }
