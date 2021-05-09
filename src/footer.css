@@ -40,10 +40,11 @@ html{
 
 .body footer{
     display: grid ;
-    grid-template-columns:20% 60% 20% ;
-    height: 70px;
+    grid-template-columns:30% 40% 30% ;
+    min-height: 70px;
     background-color:#743800;
     width:100%;
+    flex: 0 0 auto;
   }
   
   .contacts{
@@ -71,9 +72,25 @@ html{
     text-align: right;
   }
   
-  #socialmedia a, img {
+  #socialmedia img {
   width:24px;
   height:24px;
   margin-left: 15px;
   }
-  
+
+
+  @media screen and (max-width: 576px) {
+
+    .body footer{
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    
+    .contacts{
+      margin-bottom: 20px;
+    }
+
+    #socialmedia{
+    padding-bottom: 15px;
+    }
+  }

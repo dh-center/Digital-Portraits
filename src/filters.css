@@ -77,9 +77,10 @@ select {
     height: 10px;
     -webkit-appearance: none;
     width: 250px;
-    margin-left: 10px;
   }
-  
+  .century_name{
+    margin-right: 10px;
+  }
   .century_container{
     position:relative;
   }
@@ -195,4 +196,44 @@ select {
   }
   .reset_filter:hover{
 color:#D89B25;
+  }
+
+  @media screen and (max-width: 1024px) {
+    select {
+      width:197px;
+  }
+  input[type=range] {
+    width: 200px;
+    }
+}
+  @media screen and (max-width: 800px) {
+
+    .filterCont{
+      margin-bottom: 20px
+    }
+
+    .filterCont p{
+      width:100%;
+      margin-bottom: 30px;
+    }
+
+    select {
+      width:147px;
+      margin-top: 10px;
+    }
+    .century_name{
+      margin-right: 30px;
+    }
+    .century_label{
+      bottom: 20px;
+    }
+    input[type=range] {
+    width: 150px;
+    }
+    .reset_filter{
+display: block;
+margin-top: 40px;
+margin-left: 0;
+float: right;
+    }
   }
