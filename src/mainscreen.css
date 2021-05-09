@@ -38,6 +38,10 @@ html{
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rambla&family=Roboto&display=swap');
 
 /* Mainpage */
+header{
+  flex: 0 0 auto;
+}
+
 #projectname{
   display: inline-block;
   font-size: 1rem;

@@ -60,7 +60,7 @@ function Filters(props) {
                     <option value="Pop Art">Pop Art</option>
                 </select>
             </p>
-            <p>Century
+            <p><span className="century_name">Century</span>
                 <span className="century_container">
                     <span className="century_label" style={{ left: 20*centValue-300 + '%', transform: `translateX(-${20 * centValue - 300}%)` }}>{romCentValue}</span>
                     <input type="range" min={15} max={20} value={centValue} step="1"

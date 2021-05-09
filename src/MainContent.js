@@ -52,7 +52,7 @@ class MainContent extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="mainContent">
                 <Filters filterData={this.handleSlide} resetcards={this.handleClick} filterMovement={this.handleChange} />
                 <AllPaintercards state={this.state.paintersArray} />
             </div>
