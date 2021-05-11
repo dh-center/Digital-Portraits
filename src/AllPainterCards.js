@@ -7,7 +7,7 @@ function AllPaintercards(props) {
     const rendercards = () => {
         return props.state.map((painter) =>
             <div className="card">
-                <a href={`https://en.wikipedia.org/wiki/${painter}`}> <h1 className="artistname"> {painter}</h1> </a>
+                <a href={`https://en.wikipedia.org/wiki/${painter}`}target="_blank"> <h1 className="artistname"> {painter}</h1> </a>
                 <Portrait p={painter} />
             </div>);
     }
