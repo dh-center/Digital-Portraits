@@ -16,15 +16,15 @@ const dataquery = `{
     }
     }`
 
-fetch ('http://localhost:3001', { 
+fetch('http://localhost:3001', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
-    }, 
-    body: JSON.stringify({query:dataquery})
+    },
+    body: JSON.stringify({ query: dataquery })
 })
-.then(response => response.json())
-.then(data => console.log(data.data))
+    .then(response => response.json())
+    .then(data => data.data)
 
 class Portrait extends React.Component {
     constructor(props) {
@@ -34,6 +34,29 @@ class Portrait extends React.Component {
             canvas: {},
             collorsection: [],
         };
+    }
+
+    getdata() {
+        const dataquery = `{
+        allPainters{
+            name
+            Paintings{
+                year
+              url_painting
+              palette_color
+            }
+        }
+        }`
+
+        fetch('http://localhost:3001', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: dataquery })
+        })
+            .then(response => response.json())
+            .then(data => data.data)
     }
 
     renderSquare(e) {

@@ -4,36 +4,41 @@ import Filters from './Filters.js'
 import data1 from './db/all_paintings1.json'
 import movements from './db/movements.json'
 
-const dataquery = `{
-    allPainters{
-        name
-        Paintings{
-            year
-            dominant_color
-        }
-    }
-    }`
-   
-fetch ('http://localhost:3001', { 
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    }, 
-    body: JSON.stringify({query:dataquery})
-})
-    .then(response => response.json())
-    .then(data => data.data)
-
-
-
 class MainContent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { paintersArray: [] };
+        this.state = {
+            data: [],
+            paintersArray: []
+        };
         this.sorting();
     }
 
+    getdata() {
+        const dataquery = `{
+        allPainters{
+            name
+            Paintings{
+                year
+                dominant_color
+            }
+        }
+        }`
+
+        fetch('http://localhost:3001', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: dataquery })
+        })
+            .then(response => response.json())
+            .then(
+                result => this.setState({ data: result.data.allPainters })
+            )
+        console.log(this.state.data)
+    }
 
 
     sorting() {
