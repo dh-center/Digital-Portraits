@@ -2,29 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import data1 from './db/all_paintings1.json';
-import Square from './Square.js'
-
-
-const dataquery = `{
-    allPainters{
-        name
-        Paintings{
-            year
-          url_painting
-          palette_color
-        }
-    }
-    }`
-
-fetch('http://localhost:3001', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ query: dataquery })
-})
-    .then(response => response.json())
-    .then(data => data.data)
+import Square from './Square.js';
 
 class Portrait extends React.Component {
     constructor(props) {
@@ -35,30 +13,7 @@ class Portrait extends React.Component {
             collorsection: [],
         };
     }
-
-    getdata() {
-        const dataquery = `{
-        allPainters{
-            name
-            Paintings{
-                year
-              url_painting
-              palette_color
-            }
-        }
-        }`
-
-        fetch('http://localhost:3001', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ query: dataquery })
-        })
-            .then(response => response.json())
-            .then(data => data.data)
-    }
-
+    
     renderSquare(e) {
         const paintingsArray = data1[e]
         return paintingsArray

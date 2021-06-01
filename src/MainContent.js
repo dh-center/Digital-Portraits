@@ -1,7 +1,6 @@
 import React from 'react';
 import AllPaintercards from './AllPainterCards.js'
 import Filters from './Filters.js'
-import data1 from './db/all_paintings1.json'
 import movements from './db/movements.json'
 
 class MainContent extends React.Component {
@@ -9,10 +8,9 @@ class MainContent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
             paintersArray: []
         };
-        this.sorting();
+        this.getdata();
     }
 
     getdata() {
@@ -35,15 +33,13 @@ class MainContent extends React.Component {
         })
             .then(response => response.json())
             .then(
-                result => this.setState({ data: result.data.allPainters })
+                result => this.sorting(result.data.allPainters)
             )
-        console.log(this.state.data)
     }
 
-
-    sorting() {
-        const keys = Object.keys(data1)
-        const years = Object.values(data1).map((array) => array[0].year)
+    sorting(data) {
+        const paintersNames = data.map(e => e.name)
+        const years = data.map(e => e.Paintings[0].year)
         const values = years.map((e) => {
             if (typeof e === 'string') {
                 e = parseInt(e.substr(0, 4))
@@ -51,9 +47,9 @@ class MainContent extends React.Component {
             } else { return e }
         }
         )
-        const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
+        const paintAndYear = Object.assign(...paintersNames.map((n, i) => ({ [n]: values[i] })))
         this.psorted = Object.keys(paintAndYear).sort(function (a, b) { return paintAndYear[a] - paintAndYear[b] })
-        this.state.paintersArray = this.psorted
+        this.setState({ paintersArray: this.psorted })
 
         Object.keys(paintAndYear).map(key => paintAndYear[key] = Math.trunc(paintAndYear[key] / 100 + 1))
         this.paintAndYear = paintAndYear;
