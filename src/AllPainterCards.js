@@ -1,52 +1,31 @@
 import React from 'react';
 import './allpaintercards.css';
 import Portrait from './Portrait.js'
+import Loader from './Loader.js'
+
+
 
 function AllPaintercards(props) {
 
-    function getdata () {
-        const dataquery = `{
-        allPainters{
-            name
-            Paintings{
-                year
-              url_painting
-              palette_color
-            }
-        }
-        }`
-    
-        fetch('http://localhost:3001', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ query: dataquery })
-        })
-            .then(response => response.json())
-            .then(result =>  {savedata(result.data.allPainters)})
-    
-    }
-
-function savedata(fetchresult) {  // Нужно сохранить данные, чтобы потом их передать в Portrait.В идеале, передавать уже те, что относятся к опр.худ-ку
-    const data = fetchresult;
-}
-    getdata()
-
-    const rendercards = () => {
-        return props.state.map((painter) =>
-            <div className="card">
-                <a href={`https://en.wikipedia.org/wiki/${painter}`}target="_blank"> <h1 className="artistname"> {painter}</h1> </a>
-                <Portrait p={painter} />
-            </div>);
-    }
-
-    return (
+    if (props.data === "") return <Loader/>
+    else return (
         <div className="paintercardswr">
-            {rendercards()}
+            <Rendercards data={props.data} filtered={props.filtered} />
         </div>
     );
 }
 
-
+function Rendercards(props) {
+    if (props.filtered === "")
+        return props.data.map((e) =>
+            <div className="card">
+                <a href={`https://en.wikipedia.org/wiki/${e.name}`} target="_blank"> <h1 className="artistname"> {e.name}</h1> </a>
+                <Portrait paintings={e.Paintings} />
+            </div>);
+    else return props.filtered.map((e) =>
+        <div className="card">
+            <a href={`https://en.wikipedia.org/wiki/${e.name}`} target="_blank"> <h1 className="artistname"> {e.name}</h1> </a>
+            <Portrait paintings={e.Paintings} />
+        </div>);
+}
 export default AllPaintercards

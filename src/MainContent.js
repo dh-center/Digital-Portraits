@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AllPaintercards from './AllPainterCards.js'
 import Filters from './Filters.js'
 import movements from './db/movements.json'
 
-class MainContent extends React.Component {
+function MainContent() {
+    const [data, setdata] = useState('')
+    const [filteredData, setfilteredData] = useState('')
+    useEffect(() => { getdata() }, [])
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            paintersArray: []
-        };
-        this.getdata();
-    }
-
-    getdata() {
+    function getdata() {
         const dataquery = `{
-        allPainters{
-            name
-            Paintings{
+            allPainters (sortField:"year"){
+                name
                 year
-                dominant_color
+                Paintings{
+                    title
+                    year
+                  url_painting
+                  palette_color
+                  dominant_color
+                }
             }
-        }
-        }`
+            }`
 
         fetch('http://localhost:3001', {
             method: 'POST',
@@ -33,57 +32,38 @@ class MainContent extends React.Component {
         })
             .then(response => response.json())
             .then(
-                result => this.sorting(result.data.allPainters)
-            )
+                result => setdata(result.data.allPainters)
+            );
     }
 
-    sorting(data) {
-        const paintersNames = data.map(e => e.name)
-        const years = data.map(e => e.Paintings[0].year)
-        const values = years.map((e) => {
-            if (typeof e === 'string') {
-                e = parseInt(e.substr(0, 4))
-                return e
-            } else { return e }
-        }
-        )
-        const paintAndYear = Object.assign(...paintersNames.map((n, i) => ({ [n]: values[i] })))
-        this.psorted = Object.keys(paintAndYear).sort(function (a, b) { return paintAndYear[a] - paintAndYear[b] })
-        this.setState({ paintersArray: this.psorted })
-
-        Object.keys(paintAndYear).map(key => paintAndYear[key] = Math.trunc(paintAndYear[key] / 100 + 1))
-        this.paintAndYear = paintAndYear;
+    function filterData(value) {
+        const filteredByYear = data.filter(e => Math.trunc(e.year/ 100 + 1) === value);
+        setfilteredData(filteredByYear);
     }
 
-    filterData(value) {
-        const filtered = Object.keys(this.paintAndYear).filter(key => this.paintAndYear[key] === value)
-        this.setState({ paintersArray: filtered })
+    function filterMovement(movement) {
+        const filterednames = Object.keys(movements).filter(key => movements[key].includes(movement));
+        const filteredByMovements = data.filter (e => filterednames.includes(e.name));
+        setfilteredData(filteredByMovements);
     }
 
-    filterMovement(movement) {
-        const filteredMovements = Object.keys(movements).filter(key => movements[key].includes(movement))
-        this.setState({ paintersArray: filteredMovements })
-    }
+    function handleSlide(value) {
+        filterData(value);
+    };
+    function handleClick(){
+        setfilteredData('');
+    };
+    function handleChange(movement) {
+        filterMovement(movement);
+    };
 
-    handleSlide = (value) => {
-        this.filterData(value);
-    }
-    handleClick = () => {
-        this.setState({ paintersArray: this.psorted });
-    }
-    handleChange = (movement) => {
-        this.filterMovement(movement)
-    }
-
-    render() {
-        return (
-            <div className="mainContent">
-                <Filters filterData={this.handleSlide} resetcards={this.handleClick} filterMovement={this.handleChange} />
-                <AllPaintercards state={this.state.paintersArray} />
-            </div>
-        )
-    }
+    return (
+        <div className="mainContent">
+            <Filters filterData={handleSlide} resetcards={handleClick} 
+                filterMovement={handleChange} />
+            <AllPaintercards data={data} filtered={filteredData} />
+        </div>
+    );
 }
-
 
 export default MainContent

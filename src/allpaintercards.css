@@ -197,6 +197,26 @@ html,body{
     margin: 10px;
   }
 
+  /* Loader */
+
+  .loader{
+    text-align: center;
+  }
+  .loader_text{
+    font-family: "Rambla";
+    font-size: 2rem;
+    padding:30px;
+    color:#D89B25;
+  }
+  .loader_text span{
+    animation: loading 2s linear infinite;
+  }
+@keyframes loading{
+  0%{opacity:0}
+  50%{opacity:1}
+  100%{opacity:0}
+}
+
   @media screen and (max-width: 576px) {
 
     .colorLabel {

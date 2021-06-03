@@ -10,8 +10,15 @@ function createId() {
 Object.entries(data).forEach(value => {
     const [painterName, authorPaintings] = value;
 
+    let painteryear = authorPaintings[0].year
+    if (typeof painteryear === 'string') {
+        painteryear = parseInt(painteryear.substr(0, 4))
+    }
+
+
     const painter = {
         id: createId(),
+        year: painteryear,
         name: painterName,
         paintings_id: []
     }

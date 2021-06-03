@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import data1 from './db/all_paintings1.json';
 import Square from './Square.js';
 
 class Portrait extends React.Component {
@@ -14,8 +13,8 @@ class Portrait extends React.Component {
         };
     }
     
-    renderSquare(e) {
-        const paintingsArray = data1[e]
+    renderSquare() {
+        const paintingsArray = this.props.paintings
         return paintingsArray
             .filter(painting => painting.dominant_color !== "error")
             .map((painting, index) => <Square
@@ -61,7 +60,7 @@ class Portrait extends React.Component {
         return (
             <div>
                 <div className="portrait">
-                    {this.renderSquare(this.props.p)}
+                    {this.renderSquare()}
                 </div>
                 <CSSTransition in={this.state.showElement} timeout={300} classNames="lableTr" unmountOnExit>
                     <section className="colorLabel">
