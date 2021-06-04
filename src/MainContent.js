@@ -4,7 +4,7 @@ import Filters from './Filters.js'
 import movements from './db/movements.json'
 
 function MainContent() {
-    const [data, setdata] = useState([])
+    const [data, setData] = useState([])
     const [filters, setFilter] = useState(null)
     let filteredData
 
@@ -37,7 +37,7 @@ function MainContent() {
         })
             .then(response => response.json())
             .then(
-                result => setdata(result.data.allPainters)
+                result => setData(result.data.allPainters)
             );
     }
 
