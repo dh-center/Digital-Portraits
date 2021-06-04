@@ -8,16 +8,15 @@ function AllPaintercards(props) {
     if (props.data.length === 0) return <Loader />
     else return (
         <div className="paintercardswr">
-            <Rendercards data={props.data} filtered={props.filtered} />
+            {props.data.map((painter) => <Card painter={painter}/>)}
         </div>
     );
 }
 
-function Rendercards(props) {
-    return props.data.map((e) =>
+function Card (props){
         <div className="card">
-            <a href={`https://en.wikipedia.org/wiki/${e.name}`} target="_blank"> <h1 className="artistname"> {e.name}</h1> </a>
-            <Portrait paintings={e.Paintings} />
-        </div>);
-}
+            <a href={`https://en.wikipedia.org/wiki/${props.painter.name}`} target="_blank"> <h1 className="artistname"> {props.painter.name}</h1> </a>
+            <Portrait paintings={props.painter.Paintings} />
+        </div>}
+
 export default AllPaintercards

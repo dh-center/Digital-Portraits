@@ -5,7 +5,7 @@ import movements from './db/movements.json'
 
 function MainContent() {
     const [data, setdata] = useState([])
-    const [filters, setfilter] = useState(null)
+    const [filters, setFilter] = useState(null)
     let filteredData
 
     if (!filters) { filteredData = data }
@@ -54,7 +54,7 @@ function MainContent() {
 
     return (
         <div className="mainContent">
-            <Filters value={filters} onChange={setfilter} />
+            <Filters value={filters} onChange={setFilter} />
             <AllPaintercards data={filteredData} />
         </div>
     );
