@@ -14,9 +14,9 @@ function AllPaintercards(props) {
 }
 
 function Card (props){
-        <div className="card">
+        return (<div className="card">
             <a href={`https://en.wikipedia.org/wiki/${props.painter.name}`} target="_blank"> <h1 className="artistname"> {props.painter.name}</h1> </a>
             <Portrait paintings={props.painter.Paintings} />
-        </div>}
+        </div>)}
 
 export default AllPaintercards
