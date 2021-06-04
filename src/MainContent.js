@@ -4,8 +4,13 @@ import Filters from './Filters.js'
 import movements from './db/movements.json'
 
 function MainContent() {
-    const [data, setdata] = useState('')
-    const [filteredData, setfilteredData] = useState('')
+    const [data, setdata] = useState([])
+    const [filters,setfilter] = useState(null)
+    let filteredData
+
+    if(!filters){filteredData = data}
+    else{filteredData = filters.century? filterByCentury(filters.century): filterByMovement(filters.movement)}
+
     useEffect(() => { getdata() }, [])
 
     function getdata() {
@@ -23,7 +28,7 @@ function MainContent() {
             }
             }`
 
-        fetch('http://localhost:3001', {
+        fetch(process.env.REACT_APP_DATA_HOST, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,32 +41,21 @@ function MainContent() {
             );
     }
 
-    function filterData(value) {
+    function filterByCentury(value) {
         const filteredByYear = data.filter(e => Math.trunc(e.year/ 100 + 1) === value);
-        setfilteredData(filteredByYear);
+        return filteredByYear;
     }
 
-    function filterMovement(movement) {
+    function filterByMovement(movement) {
         const filterednames = Object.keys(movements).filter(key => movements[key].includes(movement));
         const filteredByMovements = data.filter (e => filterednames.includes(e.name));
-        setfilteredData(filteredByMovements);
+        return filteredByMovements;
     }
-
-    function handleSlide(value) {
-        filterData(value);
-    };
-    function handleClick(){
-        setfilteredData('');
-    };
-    function handleChange(movement) {
-        filterMovement(movement);
-    };
 
     return (
         <div className="mainContent">
-            <Filters filterData={handleSlide} resetcards={handleClick} 
-                filterMovement={handleChange} />
-            <AllPaintercards data={data} filtered={filteredData} />
+            <Filters value ={filters} onChange ={setfilter}/>
+            <AllPaintercards data={filteredData} />
         </div>
     );
 }
