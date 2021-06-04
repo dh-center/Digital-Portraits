@@ -5,11 +5,11 @@ import movements from './db/movements.json'
 
 function MainContent() {
     const [data, setdata] = useState([])
-    const [filters,setfilter] = useState(null)
+    const [filters, setfilter] = useState(null)
     let filteredData
 
-    if(!filters){filteredData = data}
-    else{filteredData = filters.century? filterByCentury(filters.century): filterByMovement(filters.movement)}
+    if (!filters) { filteredData = data }
+    else { filteredData = filters.century ? filterByCentury(filters.century) : filterByMovement(filters.movement) }
 
     useEffect(() => { getdata() }, [])
 
@@ -42,19 +42,19 @@ function MainContent() {
     }
 
     function filterByCentury(value) {
-        const filteredByYear = data.filter(e => Math.trunc(e.year/ 100 + 1) === value);
+        const filteredByYear = data.filter(e => Math.trunc(e.year / 100 + 1) === value);
         return filteredByYear;
     }
 
     function filterByMovement(movement) {
         const filterednames = Object.keys(movements).filter(key => movements[key].includes(movement));
-        const filteredByMovements = data.filter (e => filterednames.includes(e.name));
+        const filteredByMovements = data.filter(e => filterednames.includes(e.name));
         return filteredByMovements;
     }
 
     return (
         <div className="mainContent">
-            <Filters value ={filters} onChange ={setfilter}/>
+            <Filters value={filters} onChange={setfilter} />
             <AllPaintercards data={filteredData} />
         </div>
     );
