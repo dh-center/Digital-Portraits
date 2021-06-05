@@ -1,64 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AllPaintercards from './AllPainterCards.js'
 import Filters from './Filters.js'
-import data1 from './db/all_paintings1.json'
 import movements from './db/movements.json'
 
-class MainContent extends React.Component {
+function MainContent() {
+    const [data, setData] = useState([])
+    const [filters, setFilter] = useState(null)
+    let filteredData
 
-    constructor(props) {
-        super(props);
-        this.state = { paintersArray: [] };
-        this.sorting();
-    }
+    if (!filters) { filteredData = data }
+    else { filteredData = filters.century ? filterByCentury(filters.century) : filterByMovement(filters.movement) }
 
-    sorting() {
-        const keys = Object.keys(data1)
-        const years = Object.values(data1).map((array) => array[0].year)
-        const values = years.map((e) => {
-            if (typeof e === 'string') {
-                e = parseInt(e.substr(0, 4))
-                return e
-            } else { return e }
-        }
-        )
-        const paintAndYear = Object.assign(...keys.map((n, i) => ({ [n]: values[i] })))
-        this.psorted = Object.keys(paintAndYear).sort(function (a, b) { return paintAndYear[a] - paintAndYear[b] })
-        this.state.paintersArray = this.psorted
+    useEffect(() => { getdata() }, [])
 
-        Object.keys(paintAndYear).map(key => paintAndYear[key] = Math.trunc(paintAndYear[key] / 100 + 1))
-        this.paintAndYear = paintAndYear;
-    }
+    function getdata() {
+        const dataquery = `{
+            allPainters (sortField:"year"){
+                name
+                year
+                Paintings{
+                    title
+                    year
+                  url_painting
+                  palette_color
+                  dominant_color
+                }
+            }
+            }`
 
-    filterData(value) {
-        const filtered = Object.keys(this.paintAndYear).filter(key => this.paintAndYear[key] === value)
-        this.setState({ paintersArray: filtered })
-    }
-
-    filterMovement(movement) {
-        const filteredMovements = Object.keys(movements).filter(key => movements[key].includes(movement))
-        this.setState({ paintersArray: filteredMovements })
-    }
-
-    handleSlide = (value) => {
-        this.filterData(value);
-    }
-    handleClick = () => {
-        this.setState({ paintersArray: this.psorted });
-    }
-    handleChange = (movement) => {
-        this.filterMovement(movement)
+        fetch(process.env.REACT_APP_DATA_HOST, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: dataquery })
+        })
+            .then(response => response.json())
+            .then(
+                result => setData(result.data.allPainters)
+            );
     }
 
-    render() {
-        return (
-            <div className="mainContent">
-                <Filters filterData={this.handleSlide} resetcards={this.handleClick} filterMovement={this.handleChange} />
-                <AllPaintercards state={this.state.paintersArray} />
-            </div>
-        )
+    function filterByCentury(value) {
+        const filteredByYear = data.filter(e => Math.trunc(e.year / 100 + 1) === value);
+        return filteredByYear;
     }
+
+    function filterByMovement(movement) {
+        const filterednames = Object.keys(movements).filter(key => movements[key].includes(movement));
+        const filteredByMovements = data.filter(e => filterednames.includes(e.name));
+        return filteredByMovements;
+    }
+
+    return (
+        <div className="mainContent">
+            <Filters value={filters} onChange={setFilter} />
+            <AllPaintercards data={filteredData} />
+        </div>
+    );
 }
-
 
 export default MainContent
