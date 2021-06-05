@@ -1,1 +1,1 @@
-web: PORT=$PORT npm run api
+web: npm run api -- --p $PORT
