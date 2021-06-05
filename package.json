@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "echo Skip builds on Heroku"
+    "heroku-postbuild": "echo Skip builds on Dokku"
   },
   "eslintConfig": {
     "extends": [
